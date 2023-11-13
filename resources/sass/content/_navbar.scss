@@ -1,0 +1,116 @@
+@use "../base" as v;
+@use "../mixins" as m;
+
+.navbar {
+  width: 100vw; 
+  display: flex;
+  margin-bottom: 0;
+  justify-content: space-between;
+  align-items: center;
+  background-color: v.$color-negro;
+  color: v.$color-blanco;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  border-bottom: 0.1rem solid v.$color-gris;
+}
+
+@media (max-width: v.$mobile) {
+  .navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+}
+
+.profile {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: v.$color-gris;
+  color: v.$color-principal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  i {
+    font-size: 4rem;
+    padding-top: 0.9rem;
+  }
+}
+
+.profile p {
+  width: 5rem;
+  height: 5rem;
+  font-size: 3rem;
+  margin: auto;
+  border-radius: 50%;
+  background: v.$color-principal;
+  color: v.$color-gris;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile img {
+  width: 5rem;
+  height: 5rem;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.menu-list li {
+  margin-right: 2rem;
+}
+
+.navbar .logo {
+  user-select: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+@include m.logo-size(v.$logo-desktop, v.$logo-large, v.$logo-medium, v.$logo-small);
+
+.notification-icon {
+  color: v.$color-principal;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.log-out {
+  color: v.$color-principal;
+  background-color: v.$color-gris;
+  width: 10rem;
+  height: 3rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 3rem;
+  font-size: 1rem;
+}
+
+.log-out:hover,
+body.dark .log-out:hover {
+  color: v.$color-principal;
+  background-color: v.$color-bg-dark;
+}
+
+body.dark .log-out {
+  color: v.$color-principal;
+  background-color: v.$color-gris;
+}
+
+@media (max-width: v.$mobile) {
+  .log-out,
+  .notification-icon {
+    display: none;
+  }
+}

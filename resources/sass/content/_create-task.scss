@@ -1,0 +1,174 @@
+@use "../base" as v;
+@use "../mixins" as m;
+
+.container-create-task {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  border: 0.1rem solid v.$color-gris-claro;
+  margin: 2rem 10rem;
+  padding: 5rem;
+}
+
+body.dark .container-create-task {
+  background-color: v.$color-negro;
+  border: 0.1rem solid v.$color-gris;
+  .subtask-box {
+    border: 0.1rem solid v.$color-gris;
+  }
+  .subtask-box {
+    background-color: v.$color-bg-dark;
+  }
+}
+
+.subtask-content {
+  .subtask-box {
+    border: 0.1rem solid v.$color-gris-claro;
+    border-radius: 0.4rem;
+    min-height: 17rem;
+    max-height: 17rem;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+
+    ol {
+      margin: 0;
+      padding: 0;
+      color: v.$color-negro;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+
+      li.subtask {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 0.1rem solid v.$color-gris-claro;
+        background-color: v.$color-blanco-gris;
+        padding: 1rem 1rem;
+        word-break: break-all;
+        width: calc(100% - 2.2rem);
+
+        .material-icons {
+          font-size: 3rem;
+          cursor: pointer;
+          color: v.$color-secundario;
+        }
+      }
+    }
+  }
+}
+
+body.dark .subtask-content {
+  .subtask-box {
+    border: 0.1rem solid v.$color-gris;
+    ol {
+      color: v.$color-blanco;
+      li.subtask {
+        border: 0.1rem solid v.$color-gris;
+        background-color: v.$color-negro;
+        .material-icons {
+          color: v.$color-principal;
+        }
+      }
+    }
+  }
+}
+
+.add-task-container {
+  display: flex;
+  .input-project {
+    border-radius: 0.4rem 0 0 0.4rem;
+  }
+  .add-task-button {
+    flex: 1;
+    cursor: pointer;
+    border-radius: 0 0.4rem 0.4rem 0;
+    padding: 0.5rem 0.8rem;
+    margin: 0.5rem 0;
+    .material-icons {
+      font-size: 2rem;
+    }
+  }
+}
+
+body.dark .add-task-container {
+  .add-task-button {
+    .material-icons {
+      font-size: 2rem;
+      color: v.$color-negro;
+    }
+  }
+  .add-task-button:hover {
+    border: 0.1rem solid v.$color-gris;
+    .material-icons {
+      color: v.$color-blanco;
+    }
+  }
+}
+
+.assigned-task {
+  margin: 0 auto;
+  width: 30rem;
+  .assigned-user-project {
+    display: flex;
+    height: 3.5rem;
+    padding: 1rem;
+    align-items: center;
+    align-content: center;
+    @include m.grid-columns(3);
+    .material-icons {
+      margin-left: 70%;
+    }
+  }
+}
+
+body.dark .assigned-task {
+  .assigned-user-project {
+    background-color: v.$color-negro;
+    border: 0.1rem solid v.$color-gris;
+    &:hover {
+      border: 0.1rem solid v.$color-principal;
+    }
+  }
+}
+
+@media (max-width: v.$mobile) {
+  .container-create-task {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5rem;
+    margin: 5rem 0;
+    padding: 3rem 1rem 10rem 1rem;
+    text-align: center;
+  }
+  .task-date-content {
+    margin-top: 3rem;
+    h2 {
+      margin-bottom: 1rem;
+    }
+  }
+  .subtask-content {
+    .subtask-box {
+      min-height: 35rem;
+      max-height: 35rem;
+    }
+    .input-project {
+      width: 75%;
+    }
+  }
+  .add-task-button {
+    width: 0.2rem;
+    padding-top: 1rem !important;
+    span.material-icons {
+      font-size: 3.3rem !important;
+    }
+  }
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5rem;
+}

@@ -1,0 +1,123 @@
+@use "../base/variables" as v;
+@use "../mixins/mixins" as m;
+
+.container-kanban-board {
+  font-size: 1.2rem;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar-horizontal {
+    display: none;
+  }
+}
+
+.header-kanban-board {
+  position: relative;
+  text-transform: uppercase;
+  color: v.$color-secundario;
+}
+
+body.dark .header-kanban-board {
+  color: v.$color-principal;
+}
+
+.header-kanban-board,
+.kanban-board {
+  @include m.grid-columns(3, 0);
+  max-width: 75rem;
+  margin: auto;
+  text-align: center;
+}
+
+@media (max-width: v.$mobile) {
+  .container-kanban-board {
+    overflow: auto;
+  }
+  .header-kanban-board,
+  .kanban-board {
+    @include m.grid-columns(3, 0);
+    width: 60rem;
+    margin: 1rem;
+    text-align: center;
+  }
+}
+
+.kanban-board {
+  min-height: 50rem;
+  .toDo {
+    border-top: 0.1rem solid v.$color-gris-claro;
+    border-bottom: 0.1rem solid v.$color-gris-claro;
+    border-left: 0.1rem solid v.$color-gris-claro;
+  }
+  .doing {
+    border: 0.1rem solid v.$color-gris-claro;
+  }
+  .done {
+    border-top: 0.1rem solid v.$color-gris-claro;
+    border-bottom: 0.1rem solid v.$color-gris-claro;
+    border-right: 0.1rem solid v.$color-gris-claro;
+  }
+}
+
+body.dark .kanban-board {
+  .toDo {
+    border-top: 0.1rem solid v.$color-gris;
+    border-bottom: 0.1rem solid v.$color-gris;
+    border-left: 0.1rem solid v.$color-gris;
+  }
+  .doing {
+    border: 0.1rem solid v.$color-gris;
+  }
+  .done {
+    border-top: 0.1rem solid v.$color-gris;
+    border-bottom: 0.1rem solid v.$color-gris;
+    border-right: 0.1rem solid v.$color-gris;
+  }
+}
+
+.task-card {
+  background-color: v.$color-blanco-gris;
+  border: 0.1rem solid v.$color-gris-claro;
+  cursor: pointer;
+  .header-task {
+    background-color: v.$color-secundario;
+    padding: 1rem;
+    text-align: justify;
+  }
+  .body-task {
+    color: v.$color-negro;
+    padding: 1rem;
+    text-align: justify;
+    border-bottom: 0.1rem solid v.$color-gris-claro;
+  }
+  .user-task {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    padding: 1rem;
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .profile {
+      margin-right: 1rem;
+    }
+  }
+}
+
+body.dark .task-card {
+  background-color: v.$color-negro;
+  border: 0.1rem solid v.$color-gris;
+  .header-task {
+    background-color: v.$color-principal;
+    color: v.$color-negro;
+  }
+  .body-task {
+    color: v.$color-blanco;
+    border-bottom: 0.1rem solid v.$color-gris;
+  }
+}
+
+.task-content.collapsed .body-task {
+  display: none;
+}

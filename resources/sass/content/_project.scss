@@ -1,0 +1,186 @@
+@use "../base" as v;
+@use "../mixins" as m;
+
+.content-container {
+  display: flex;
+  justify-content: center;
+  height: 60rem;
+  width: 100%;
+}
+
+.container-project {
+  @include m.grid-columns(2, 0);
+  border: 0.1rem solid v.$color-gris-claro;
+  padding: 2rem;
+  width: 100%;
+  height: 50rem;
+  margin: 1rem 5rem;
+}
+
+body.dark .container-project {
+  border: 0.1rem solid v.$color-gris;
+}
+
+.card {
+  position: relative;
+  border: 0.1rem solid v.$color-gris-claro;
+  width: 25rem;
+  height: 25rem;
+  margin: 2rem auto;
+  .card-header {
+    background-color: v.$color-secundario;
+    height: 5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+      color: v.$color-blanco;
+      font-weight: 400;
+      font-size: 3.2rem;
+    }
+  }
+  .card-body {
+    display: flex;
+    text-align: center;
+    justify-content: justify;
+    font-size: 1.5rem;
+  }
+}
+
+.create-project {
+  margin: 0 auto;
+  .material-icons {
+    color: v.$color-secundario;
+    font-size: 14.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 3.2rem;
+    font-weight: 300;
+    color: v.$color-negro;
+  }
+}
+body.dark .material-icons {
+  color: v.$color-principal;
+}
+
+body.dark .card {
+  border: 0.1rem solid v.$color-gris;
+  background-color: v.$color-gris;
+  .card-header {
+    background-color: v.$color-principal;
+    h2 {
+      color: v.$color-negro;
+    }
+  }
+}
+
+.projects {
+  @include m.grid-columns(3, 2rem);
+}
+
+@media (max-width: v.$tablet) {
+  .projects {
+    @include m.grid-columns(1, 2rem);
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .create-project {
+    display: flex;
+    align-items: center;
+  }
+
+  .container-project {
+    @include m.grid-columns(1, 0);
+    padding-top: 0;
+    margin: auto 0;
+    height: 130rem;
+    width: 100%;
+  }
+  .card {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.card.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: v.$color-gris-claro;
+  font-size: 3.2rem;
+}
+
+.icons-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.icon-link {
+  display: inline-block;
+  margin-right: 0.5rem;
+  color: v.$color-secundario;
+}
+.icon-link .material-icons {
+  font-size: 4.5rem;
+}
+
+.pagination {
+  @include m.grid-columns(5, 0rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .circle {
+    background-color: v.$color-secundario;
+    border-radius: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: v.$color-blanco;
+    font-size: 3.2rem;
+    cursor: pointer;
+    user-select: none;
+    pointer-events: auto;
+  }
+
+  .arrow-right,
+  .arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 2rem solid transparent;
+    border-bottom: 2rem solid transparent;
+    cursor: pointer;
+    user-select: none;
+    pointer-events: auto;
+  }
+  .arrow-left {
+    border-right: 3rem solid v.$color-negro;
+  }
+  .arrow-right {
+    border-left: 3rem solid v.$color-negro;
+  }
+}
+
+body.dark .arrow-left {
+  border-right: 3rem solid v.$color-gris;
+}
+body.dark .arrow-right {
+  border-left: 3rem solid v.$color-gris;
+}
+
+body.dark .circle {
+  background-color: v.$color-principal;
+  color: v.$color-negro;
+}

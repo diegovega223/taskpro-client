@@ -1,0 +1,131 @@
+@use "variables" as v;
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: v.$fuente-principal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  background-color: v.$color-blanco;
+  color: v.$color-blanco;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  transition: background-color 0.5s;
+}
+a {
+  text-decoration: none;
+  color: v.$color-negro;
+}
+
+h1,
+h2 {
+  font-size: 2.4rem;
+  color: v.$color-secundario;
+  margin: 0;
+}
+
+h3 {
+  color: v.$color-gris-icono;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+p {
+  margin-bottom: 1.2rem;
+  color: v.$color-negro;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  background-color: v.$color-secundario;
+  color: v.$color-blanco;
+}
+
+button:hover {
+  background-color: v.$color-principal;
+}
+
+body.dark {
+  background-color: v.$color-bg-dark;
+  transition: background-color 0.5s;
+  h1,
+  h2 {
+    color: v.$color-principal;
+  }
+
+  h3 {
+    color: v.$color-blanco;
+  }
+
+  p {
+    color: v.$color-blanco;
+  }
+
+  button,
+  .button {
+    background-color: v.$color-principal;
+    color: v.$color-negro;
+  }
+
+  button:hover {
+    background-color: v.$color-bg-dark;
+    color: v.$color-blanco;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+
+  input,
+  textarea,
+  select {
+    border: 0.1rem solid v.$color-gris;
+  }
+}
+
+.right-container {
+  ::-webkit-scrollbar {
+    background-color: v.$color-blanco;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: v.$color-secundario;
+  }
+  ::-webkit-scrollbar {
+    width: 1.8rem;
+    border: 0.1rem solid v.$color-secundario;
+  }
+}
+
+body.dark .right-container {
+  ::-webkit-scrollbar {
+    background-color: v.$color-negro;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: v.$color-principal;
+  }
+  ::-webkit-scrollbar {
+    width: 1.8rem;
+    border: 0.1rem solid v.$color-principal;
+  }
+}
+
+select {
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+}

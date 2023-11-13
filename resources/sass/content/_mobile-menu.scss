@@ -1,0 +1,93 @@
+@use "../base/variables" as v;
+
+.mobile-menu {
+  display: none;
+}
+
+.bar {
+  display: block;
+  width: 2.5rem;
+  height: 0.3rem;
+  margin: 0.5rem auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: v.$color-principal;
+}
+
+.nav-menu {
+  z-index: 2;
+}
+
+@media (max-width: v.$mobile) {
+  .nav-menu {
+    position: fixed;
+    top: -100%;
+    flex-direction: column;
+    background-color: v.$color-negro;
+    width: 100vw;
+    text-align: center;
+    transition: 0.5s;
+    border-bottom: 0.1rem solid v.$color-gris;
+  }
+
+  body.mobile .nav-menu {
+    top: 8rem;  
+  }
+
+  ul {
+    padding-left: 0;
+  }
+  .mobile-menu {
+    display: block;
+    cursor: pointer;
+    color: v.$color-principal;
+    margin-right: 10%;
+    width: 10rem !important;
+  }
+}
+
+body.mobile .mobile-menu .bar:nth-child(2) {
+  opacity: 0;
+}
+
+body.mobile .mobile-menu .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+body.mobile .mobile-menu .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.nav-menu ul li.switch,
+.nav-menu ul li.log-out-mobile button.log-out {
+  display: flex;
+}
+
+.nav-menu ul li {
+  margin-bottom: 2.7rem;
+}
+
+.nav-menu ul li {
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+.nav-menu ul li a .material-icons {
+  margin-right: 0.5rem;
+}
+
+@media (min-width: v.$mobile) {
+  .nav-menu ul li.log-out-mobile button.log-out,
+  .nav-menu ul li.switch,
+  .nav-menu ul li a {
+    display: none;
+  }
+}

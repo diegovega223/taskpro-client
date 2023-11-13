@@ -1,0 +1,84 @@
+@use "../base/variables" as v;
+@use "../mixins/mixins" as m;
+
+.container-menu-body {
+  ul {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  h1.title {
+    margin-top: -6.5rem;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  top: 6.8rem;
+  height: 120rem;
+  background-color: v.$color-blanco-gris;
+  color: v.$color-bg-dark;
+  width: 30rem;
+  line-height: 4;
+  text-align: center;
+  z-index: 1;
+  border-right: 0.1rem solid v.$color-gris-claro;
+  ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.sidebar ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar ul li a:hover {
+  background-color: v.$color-secundario;
+  color: v.$color-blanco;
+}
+
+body.dark {
+  .sidebar {
+    background-color: v.$color-bg-dark;
+    border-right: 0.1rem solid v.$color-gris;
+    ul li a {
+      color: v.$color-blanco;
+    }
+  }
+  .sidebar ul li a:hover {
+    background-color: v.$color-principal;
+    color: v.$color-negro;
+  }
+  .sidebar ul li a:hover i.material-icons {
+    color: v.$color-negro;
+  }
+}
+.sidebar ul li:nth-child(even) {
+  background-color: v.$color-blanco;
+}
+
+body.dark .sidebar ul li:nth-child(even) {
+  background-color: v.$color-negro;
+}
+.right-container {
+  height: auto;
+  min-height: 10rem;
+  width: calc(100% - 30rem);
+  margin-left: 30rem;
+}
+@media (max-width: v.$mobile) {
+  .right-container {
+    height: auto;
+    min-height: 100vw;
+    width: 100vw;
+    margin-left: 0rem;
+    margin-top: 16.5rem;
+  }
+  .sidebar {
+    display: none;
+  }
+}

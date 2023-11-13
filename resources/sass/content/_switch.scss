@@ -1,0 +1,100 @@
+@use "../base" as v;
+
+.switch {
+  display: flex;
+  align-items: center;
+  outline: none;
+}
+
+.switch-label {
+  position: relative;
+  display: inline-block;
+  width: 10rem;
+  height: 3rem;
+  background-color: v.$color-gris;
+  border-radius: 3rem;
+  cursor: pointer;
+}
+
+.switch-label:hover {
+  background-color: v.$color-bg-dark;
+}
+
+.switch-label input {
+  display: none;
+}
+
+
+
+.modo-text {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  font-size: 1rem;
+  transition: 0.4s;
+}
+
+.left.active {
+  left: 0;
+  color: v.$color-negro;
+}
+
+.right.active {
+  right: 0;
+  color: v.$color-negro;
+}
+
+.left {
+  left: 0;
+  color: v.$color-principal;
+}
+
+.right {
+  right: 0;
+  color: v.$color-principal;
+}
+
+.switch-label input:checked + .slider {
+  transform: translateX(100%);
+}
+
+.switch-label,
+.switch-label input,
+.slider,
+.modo-text {
+  user-select: none;
+}
+
+@media (max-width: v.$mobile) {
+  .switch {
+    display: none;
+  }
+}
+
+.nav-menu .switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-menu .switch-label {
+  margin: 0;
+}
+
+.nav-menu button {
+  display: block;
+  margin: auto;
+}
+.slider {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background-color: v.$color-principal;
+  border-radius: 3rem;
+  transition: 0.4s;
+  left: 0;
+  transform: translateX(0);
+}

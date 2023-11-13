@@ -1,0 +1,88 @@
+@use "variables" as v;
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+  margin: 2rem;
+}
+
+.align-items {
+  display: flex;
+  align-items: center;
+}
+
+.m-1 {
+  margin: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
+.pt-2 {
+  padding-top: 2rem;
+}
+
+.pb-2 {
+  padding-bottom: 2rem;
+}
+
+.text-color {
+  color: v.$color-negro;
+}
+
+body.dark .text-color {
+  color: v.$color-blanco;
+}
+
+.title {
+  color: v.$color-negro;
+  text-transform: uppercase;
+  margin-top: 2rem;
+}
+
+@media (max-width: v.$mobile) {
+  .title {
+    color: v.$color-negro;
+    text-transform: uppercase;
+    margin-top: 10rem;
+  }
+}
+
+body.dark .title {
+  color: v.$color-blanco;
+}
+
+::selection {
+  color: v.$color-negro;
+  background: v.$color-secundario;
+}
+
+body.dark ::selection {
+  color: v.$color-negro;
+  background: v.$color-principal;
+}
+

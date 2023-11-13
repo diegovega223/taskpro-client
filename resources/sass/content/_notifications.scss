@@ -1,0 +1,131 @@
+@use "../base/variables" as v;
+@use "../mixins/mixins" as m;
+
+.notifications-list {
+  border: 0.1rem solid v.$color-gris-claro;
+  margin: 2rem 10%;
+  color: v.$color-negro;
+  padding-bottom: 0;
+  min-height: 60rem;
+  .profile i.material-icons {
+    font-size: 2rem;
+    padding: 2rem;
+    color: v.$color-blanco;
+    cursor: pointer;
+    transition: 0.5s;
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    margin: 0;
+    font-size: 1.8rem;
+    border: 0;
+    background-color: v.$color-blanco-gris;
+    .close-button {
+      background: v.$color-secundario;
+      border: none;
+      width: 3rem;
+      height: 3rem;
+      cursor: pointer;
+      padding: 0;
+      margin: 0.5rem 0.5rem;
+      .material-icons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: v.$color-blanco;
+      }
+    }
+    &:hover {
+      .close-button {
+        background: v.$color-principal;
+        .material-icons {
+          color: v.$color-blanco;
+        }
+      }
+    }
+    span {
+      padding-right: 1rem;
+      padding-left: 1rem;
+      font-size: 1.6rem;
+    }
+  }
+
+  ul li:nth-child(even) {
+    background-color: v.$color-blanco;
+  }
+  .user-info {
+    display: flex;
+    align-items: center;
+    .profile {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      width: 4rem;
+      height: 4rem;
+      background-color: v.$color-secundario;
+    }
+  }
+}
+
+body.dark .notifications-list {
+  border: 0.1rem solid v.$color-gris;
+  color: v.$color-blanco;
+
+  li {
+    background-color: v.$color-negro;
+    .close-button {
+      background: v.$color-principal;
+      .material-icons {
+        color: v.$color-negro;
+      }
+    }
+    &:hover {
+      .close-button {
+        background: v.$color-bg-dark;
+        .material-icons {
+          color: v.$color-principal;
+        }
+      }
+    }
+  }
+  ul li:nth-child(even) {
+    background-color: v.$color-bg-dark;
+    &:hover {
+      .close-button {
+        background: v.$color-negro;
+        .material-icons {
+          color: v.$color-principal;
+        }
+      }
+    }
+  }
+  .profile i.material-icons {
+    color: v.$color-principal;
+  }
+  .profile {
+    background-color: v.$color-gris;
+  }
+}
+
+@media (max-width: v.$mobile) {
+  .notifications-list {
+    margin-left: 0;
+    margin-right: 0;
+    span {
+      padding-left: 0.8rem;
+    }
+  }
+}

@@ -1,0 +1,83 @@
+@use "../base/variables" as v;
+
+.register {
+  border: 0.1rem solid v.$color-gris-claro;
+  margin: auto;
+  padding: 5rem;
+  width: 50%;
+  height: 45rem;
+  text-align: center;
+}
+
+body.dark .register,
+body.dark .input-1-col,
+body.dark .input-2-col {
+  background-color: v.$color-gris;
+}
+
+.input-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+
+.input-2-col {
+  padding: 1rem;
+  border: 0.1rem solid v.$color-gris-claro;
+  border-radius: 0.4rem;
+}
+
+.input-1-col {
+  grid-column: span 2;
+  padding: 1rem;
+  border: 0.1rem solid v.$color-gris-claro;
+  border-radius: 0.4rem;
+  margin-bottom: 2rem;
+}
+
+body.dark .input-1-col,
+body.dark .input-2-col {
+  background-color: v.$color-bg-dark;
+  color: v.$color-blanco;
+}
+
+.register .text-login {
+  margin: 5rem 0;
+}
+
+.register .separador {
+  margin-top: 3rem;
+}
+
+@media (max-width: v.$tablet) {
+  .input-group {
+    grid-template-columns: 1fr;
+  }
+
+  .input-1-col {
+    grid-column: auto;
+  }
+
+  .input-1-col {
+    grid-column: auto;
+  }
+
+  .input-1-col,
+  .input-2-col {
+    height: 3.5rem;
+    font-size: 2rem;
+  }
+
+  .register {
+    margin: 0 auto 0;
+    width: 90%;
+    padding: 2rem;
+    height: auto;
+  }
+
+  .container {
+    padding-top: auto;
+    padding-bottom: auto;
+    height: 60rem;
+  }
+}

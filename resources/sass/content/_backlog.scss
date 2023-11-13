@@ -1,0 +1,85 @@
+@use "../base/variables" as v;
+@use "../mixins/mixins" as m;
+
+.container-backlog {
+  overflow: auto;
+}
+
+.container-search {
+  display: flex;
+  flex-direction: column;
+  input {
+    width: 60%;
+    padding: 1rem;
+    margin: 0.5rem auto;
+    border: 0.1rem solid v.$color-gris-claro;
+    border-radius: 0.4rem;
+  }
+  margin-bottom: 5rem;
+}
+
+body.dark .container-search {
+  input {
+    color: v.$color-blanco;
+    background-color: v.$color-bg-dark;
+    border: 0.1rem solid v.$color-gris;
+  }
+}
+
+.backlog {
+  border: 0.1rem solid v.$color-gris-claro;
+  margin: 2rem 10%;
+  padding-bottom: 0;
+  @include m.grid-columns(5, 0);
+  .view-button-container {
+    border-top: 0.1rem solid v.$color-gris-claro;
+    .view-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 5rem;
+    }
+  }
+}
+
+body.dark {
+  .backlog {
+    border: 0.1rem solid v.$color-gris;
+    .view-button-container {
+      border-top: 0.1rem solid v.$color-gris;
+    }
+  }
+}
+
+@media (max-width: v.$mobile) {
+  .backlog {
+    margin: auto;
+    border-left: none;
+    border-right: none;
+    min-width: 50rem;
+    overflow: auto;
+    @include m.grid-columns(3, 0);
+    font-size: 1.2rem;
+    .profile {
+      width: 4rem;
+      height: 4rem;
+      margin: auto;
+    }
+  }
+  .view-button-container {
+    .view-button {
+      font-size: 1.2rem;
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+  .container-search {
+    input {
+      width: 80%;
+      padding: 1rem;
+      margin: 0.25rem auto;
+    }
+    margin-bottom: 3rem;
+  }
+}
