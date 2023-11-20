@@ -204,6 +204,56 @@ body.dark ::selection {
   background: #fac710;
 }
 
+.alert {
+  padding: 1rem;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  color: #f3721f;
+  position: relative;
+}
+
+body.dark .alert {
+  color: #fac710;
+}
+
+@media (max-width: 76.8rem) {
+  .alert {
+    padding: 0.5rem;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+  }
+}
+.search-result-item:hover {
+  color: #f3721f;
+  background-color: #e3e3e3;
+  border: 0.1rem solid #ccc;
+}
+
+.search-result-item {
+  color: black;
+  cursor: pointer;
+  text-align: center;
+  width: 85%;
+  background-color: #e3e3e3;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  padding: 0.7rem 5%;
+  margin: 0;
+}
+
+@media (max-width: 76.8rem) {
+  .search-result-item {
+    width: 95%;
+    padding: 0.8rem 0;
+    margin: 0.5rem auto;
+    margin-top: 0;
+  }
+}
+input#user-search.input-project {
+  margin-bottom: 0;
+}
+
 #logo {
   position: fixed;
   top: 0;
@@ -600,7 +650,8 @@ body.dark .google-login {
   margin: auto;
   padding: 5rem;
   width: 50%;
-  height: 45rem;
+  min-height: 45rem;
+  min-height: auto;
   text-align: center;
 }
 
@@ -663,7 +714,9 @@ body.dark .input-2-col {
     margin: 0 auto 0;
     width: 90%;
     padding: 2rem;
-    height: auto;
+    min-height: auto;
+    border-right: none;
+    border-left: none;
   }
   .container {
     padding-top: auto;
@@ -788,6 +841,7 @@ body.dark .container-project {
   width: 25rem;
   height: 25rem;
   margin: 2rem auto;
+  transition: background-color 0.5s;
 }
 .card .card-header {
   background-color: #f3721f;
@@ -807,6 +861,22 @@ body.dark .container-project {
   text-align: center;
   justify-content: justify;
   font-size: 1.5rem;
+}
+
+.card-header h2,
+.card-body {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 1rem;
+}
+
+.card:hover {
+  background-color: #e3e3e3;
+}
+
+body.dark .card:hover {
+  background-color: #2e2e2e;
 }
 
 .create-project {
@@ -833,6 +903,7 @@ body.dark .material-icons {
 body.dark .card {
   border: 0.1rem solid #444444;
   background-color: #444444;
+  transition: background-color 0.5s;
 }
 body.dark .card .card-header {
   background-color: #fac710;
@@ -1163,6 +1234,12 @@ body.dark .custom-date-input {
     height: 8rem;
   }
 }
+.assigned-user-project p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .container-menu-body ul {
   margin-left: 0;
   padding-left: 0;

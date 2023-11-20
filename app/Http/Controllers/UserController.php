@@ -4,22 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
     public function register(Request $request)
     {
         $response = Http::post(getenv("API_TASKPRO_URL") . 'usuario/alta', $request->all());
+
         if ($response->successful()) {
             return redirect("/login")->with("creado", true);
         }
-
-        $error = $response->json();
-        if ($error !== null && isset($error["result"])) {
-            return "Hubo un problema: " . $error["result"];
-        }
-
-        return "Hubo un problema desconocido.";
+        $errors = $response->json();
+        return back()->withInput()->withErrors($errors);
     }
 
     public function login(Request $request)
@@ -31,19 +28,31 @@ class UserController extends Controller
         if ($tokenResponse->successful()) {
             $accessToken = $tokenResponse->json()['access_token'];
             session(['access_token' => $accessToken]);
-
             $validationResponse = $this->validateAccessToken($accessToken);
 
             if ($validationResponse->successful()) {
                 $validationResponseJson = $validationResponse->json();
-                $cookie = $this->createValidationCookie($validationResponseJson);
+                $userResponse = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $accessToken,
+                ])->get(getenv("API_TASKPRO_URL") . "usuario/" . $validationResponseJson['name']);
+                if ($userResponse->successful()) {
+                    $userArray = $userResponse->json()['user'];
+                    foreach ($userArray as $key => $value) {
+                        if (is_array($value)) {
+                            $value = json_encode($value);
+                        }
+                        $cookies[] = cookie($key, $value, 60);
+                    }
 
-                return $this->redirectWithCookie($cookie);
+                    return redirect('project')->withCookies($cookies);
+                } else {
+                    return redirect('/login')->with('error', 'No se pudo recuperar el usuario.');
+                }
             } else {
-                return "El token de acceso no es válido.";
+                return redirect('/login')->with('error', 'El token de acceso no es válido.');
             }
         } else {
-            return "El usuario o la contraseña no son válidos.";
+            return redirect('/login')->with('error', 'El usuario o la contraseña no son válidos.');
         }
     }
 
@@ -70,7 +79,7 @@ class UserController extends Controller
     {
         return Http::withHeaders([
             'Authorization' => 'Bearer ' . $accessToken,
-        ])->get(getenv("API_TASKPRO_URL_BASE") . 'api/v1/validate');
+        ])->get(getenv("API_TASKPRO_URL") . 'validate');
     }
 
     protected function createValidationCookie($validationResponseJson)
@@ -86,16 +95,22 @@ class UserController extends Controller
     public function logout()
     {
         $accessToken = session('access_token');
-    
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $accessToken,
         ])->get(getenv("API_TASKPRO_URL") . 'logout');
-    
+
         if ($response->successful()) {
             session()->forget('access_token');
-            return redirect("/login")->with("desconectado", true);
         }
-    
-        return "Hubo un problema: " . $response->status() . " " . $response->body();
-    }   
+    }
+
+    public function search($user)
+    {
+        $accessToken = session('access_token');
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken,
+        ])->get(getenv("API_TASKPRO_URL") . "search/" . $user);
+
+        return response()->json($response->json());
+    }
 }

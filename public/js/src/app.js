@@ -1,5 +1,5 @@
-import { enableDarkMode } from './darkmode';
-import { setupMobileMenu } from './mobileMenu';
+import { cambiarModo } from './darkmode.js';
+import { mobileMenu } from './mobileMenu.js';
 
-enableDarkMode();
-setupMobileMenu();
+cambiarModo();
+mobileMenu();

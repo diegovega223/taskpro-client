@@ -30,11 +30,8 @@
             </a>
         </li>
         <ul>
-            @php
-                $validationData = json_decode(request()->cookie('validation'), true);
-            @endphp
             <li class="profile">
-                <p>{{ ucfirst(substr($validationData['name'], 0, 1)) }}</p>
+                <p>{{ ucfirst(substr(request()->cookie('name'), 0, 1)) }}</p>
             </li>
         </ul>
 </header>

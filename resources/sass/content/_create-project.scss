@@ -203,3 +203,9 @@ body.dark .custom-date-input {
     }
   }
 }
+
+.assigned-user-project p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

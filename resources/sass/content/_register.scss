@@ -5,7 +5,8 @@
   margin: auto;
   padding: 5rem;
   width: 50%;
-  height: 45rem;
+  min-height: 45rem;
+  min-height: auto;
   text-align: center;
 }
 
@@ -72,7 +73,9 @@ body.dark .input-2-col {
     margin: 0 auto 0;
     width: 90%;
     padding: 2rem;
-    height: auto;
+    min-height: auto;
+    border-right: none;
+    border-left: none;
   }
 
   .container {

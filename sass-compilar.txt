@@ -1,0 +1,8 @@
+Instalar sass.
+npm install sass
+
+Compilar sass.
+npx sass resources/sass/app.scss public/css/styles.css
+
+Compilar en tiempo real.
+npx sass --watch resources/sass/app.scss public/css/styles.css

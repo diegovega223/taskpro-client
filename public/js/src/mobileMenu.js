@@ -1,7 +1,7 @@
 const bodyElement = document.body;
 const menu = document.querySelector(".mobile-menu");
 
-function mobileMenu() {
+export function mobileMenu() {
 
   bodyElement.classList.toggle("mobile");
 }

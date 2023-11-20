@@ -1,7 +1,6 @@
 const modoSwitches = document.querySelectorAll(".modoSwitch");
 
-
-function cambiarModo(event) {
+export function cambiarModo(event) {
   const switchInput = event.target;
   const switchLabel = switchInput.parentElement;
   const leftText = switchLabel.querySelector(".left");

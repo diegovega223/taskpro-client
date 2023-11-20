@@ -20,57 +20,65 @@
             </div>
 
             <div class="projects">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Project 1</h2>
-                    </div>
-                    <div class="card-body">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorem at sunt magni
-                            eligendi earum! Minus odio voluptatum fugit atque.</p>
-                    </div>
-                    <div class="icons-container">
-                        <a href="/project" class="icon-link">
-                            <span class="material-icons">
-                                edit_note
-                            </span>
-                        </a>
-                        <a href="/project" class="icon-link">
-                            <span class="material-icons">
-                                delete_forever
-                            </span>
-                        </a>
-                    </div>
-                </div>
+                @php
+                    $maxCards = 3;
+                    $proyectosData = $proyectos['data'] ?? [];
+                @endphp
 
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Project 2</h2>
+                @foreach ($proyectosData as $proyecto)
+                    <div class="card">
+                        <div class="card-header">
+                            <h2> {{ isset($proyecto['proyecto']['titulo']) ? $proyecto['proyecto']['titulo'] : '' }}</h2>
+                        </div>
+                        <div class="card-body">
+                            <p>{{ isset($proyecto['proyecto']['descripcion']) ? $proyecto['proyecto']['descripcion'] : '' }}
+                            </p>
+                        </div>
+                        <div class="icons-container">
+                            <a href="/project" class="icon-link">
+                                <span class="material-icons">
+                                    edit_note
+                                </span>
+                            </a>
+                            <a href="/project" class="icon-link">
+                                <span class="material-icons">
+                                    delete_forever
+                                </span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorem at sunt magni
-                            eligendi earum! Minus odio voluptatum fugit atque.</p>
-                    </div>
-                    <div class="icons-container">
-                        <a href="/project" class="icon-link">
-                            <span class="material-icons">
-                                edit_note
-                            </span>
-                        </a>
-                        <a href="/project" class="icon-link">
-                            <span class="material-icons">
-                                delete_forever
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                <div class="card empty">empty</div>
+                    @php
+                        $maxCards--;
+                    @endphp
+                @endforeach
+                @while ($maxCards > 0)
+                    <div class="card empty">empty</div>
+                    @php
+                        $maxCards--;
+                    @endphp
+                @endwhile
                 <div></div>
+
                 <div class="pagination">
-                    <div class="arrow-left"></div>
-                    <div class="circle">1</div>
-                    <div class="circle">2</div>
-                    <div class="circle">3</div>
-                    <div class="arrow-right"></div>
+                    @if (isset($proyectos['current_page']) && $proyectos['current_page'] > 1)
+                        <a href="?page={{ $proyectos['current_page'] - 1 }}" class="arrow-left"></a>
+                    @endif
+
+                    @php
+                        $start = isset($proyectos['current_page']) ? max($proyectos['current_page'] - 1, 1) : 1;
+                        $end = isset($proyectos['last_page']) ? min($proyectos['current_page'] + 1, $proyectos['last_page']) : 1;
+                    @endphp
+
+                    @for ($i = $start; $i <= $end; $i++)
+                        <a href="?page={{ $i }}" class="circle">{{ $i }}</a>
+                    @endfor
+
+                    @if (isset($proyectos['current_page']) &&
+                            isset($proyectos['last_page']) &&
+                            $proyectos['current_page'] < $proyectos['last_page']
+                    )
+                        <a href="?page={{ $proyectos['current_page'] + 1 }}" class="arrow-right"></a>
+                    @endif
                 </div>
                 <div></div>
             </div>

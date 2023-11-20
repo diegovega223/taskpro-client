@@ -21,17 +21,17 @@
                 </label>
             </li>
             <li>
+            <a href="/logout">
                 <button class="log-out">
                     <span class="material-icons">
                         logout
                     </span>LOG OUT
                 </button>
+                </a>
             </li>
-            @php
-                $validationData = json_decode(request()->cookie('validation'), true);
-            @endphp
+        
             <li class="profile">
-                <p>{{ ucfirst(substr($validationData['name'], 0, 1)) }}</p>
+                  <p>{{ ucfirst(substr(request()->cookie('name'), 0, 1)) }}</p>
             </li>
         </ul>
     </header>

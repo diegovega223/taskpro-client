@@ -86,3 +86,54 @@ body.dark ::selection {
   background: v.$color-principal;
 }
 
+.alert {
+  padding: 1rem;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  color: v.$color-secundario;
+  position: relative;
+}
+
+body.dark .alert {
+  color: v.$color-principal;
+}
+
+@media (max-width: v.$tablet) {
+  .alert {
+    padding: 0.5rem;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+  }
+}
+
+.search-result-item:hover {
+  color: v.$color-secundario;
+  background-color: v.$color-blanco-gris;
+  border: 0.1rem solid v.$color-gris-claro;
+}
+
+.search-result-item {
+  color: black;
+  cursor: pointer;
+  text-align: center;
+  width: 85%;
+  background-color: v.$color-blanco-gris;
+  border: 0.1rem solid v.$color-gris-claro;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  padding: 0.7rem 5%;
+  margin: 0;
+}
+
+@media (max-width: v.$tablet) {
+  .search-result-item {
+    width: 95%;
+    padding: 0.8rem 0;
+    margin: 0.5rem auto;
+    margin-top: 0;
+  }}
+
+
+input#user-search.input-project {
+  margin-bottom: 0;
+}
