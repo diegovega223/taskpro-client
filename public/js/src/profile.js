@@ -1,4 +1,5 @@
-document.getElementById('fileInput').addEventListener('change', function () {
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('fileInput').addEventListener('change', function () {
     const fileInput = document.getElementById('fileInput');
     const profileImage = document.getElementById('profileImage');
     
@@ -9,3 +10,4 @@ document.getElementById('fileInput').addEventListener('change', function () {
       profileImage.src = objectURL;
     }
   });
+});

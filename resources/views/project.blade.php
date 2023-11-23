@@ -19,6 +19,22 @@
                 </div>
             </div>
 
+
+
+
+            <div id="deleteModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirm deletion</h4>
+                    </div>
+                    <p class="modal-text">Are you sure you want to delete this project?</p>
+                    <div class="modal-buttons">
+                        <button id="cancelButton" class="modal-button">No</button>
+                        <a id="confirmDelete" class="modal-button" href="#">Yes</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="projects">
                 @php
                     $maxCards = 3;
@@ -27,26 +43,33 @@
 
                 @foreach ($proyectosData as $proyecto)
                     <div class="card">
-                        <div class="card-header">
-                            <h2> {{ isset($proyecto['proyecto']['titulo']) ? $proyecto['proyecto']['titulo'] : '' }}</h2>
-                        </div>
-                        <div class="card-body">
-                            <p>{{ isset($proyecto['proyecto']['descripcion']) ? $proyecto['proyecto']['descripcion'] : '' }}
-                            </p>
-                        </div>
-                        <div class="icons-container">
-                            <a href="/project" class="icon-link">
-                                <span class="material-icons">
-                                    edit_note
-                                </span>
-                            </a>
-                            <a href="/project" class="icon-link">
-                                <span class="material-icons">
-                                    delete_forever
-                                </span>
-                            </a>
-                        </div>
+                        <a href="/kanban-board/{{ $proyecto['proyecto']['IDProyecto'] ?? '' }}" class="card-link">
+                            <div class="card-header">
+                                <h2> {{ isset($proyecto['proyecto']['titulo']) ? $proyecto['proyecto']['titulo'] : '' }}
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <p>{{ isset($proyecto['proyecto']['descripcion']) ? $proyecto['proyecto']['descripcion'] : '' }}
+                                </p>
+                            </div>
+
+                            <div class="icons-container">
+                                <a href="/project" class="icon-link" onclick="event.stopPropagation();">
+                                    <span class="material-icons">
+                                        edit_note
+                                    </span>
+                                </a>
+                                <a href="#" class="icon-link delete-btn" data-toggle="modal"
+                                    data-target="#deleteModal" data-id="{{ $proyecto['proyecto']['IDProyecto'] ?? '' }}"
+                                    onclick="event.stopPropagation();">
+                                    <span class="material-icons">
+                                        delete_forever
+                                    </span>
+                                </a>
+                            </div>
+                        </a>
                     </div>
+
                     @php
                         $maxCards--;
                     @endphp
@@ -84,4 +107,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/src/deleteModalProject.js') }}"></script>
 @endsection

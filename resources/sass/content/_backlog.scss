@@ -29,8 +29,8 @@ body.dark .container-search {
 .backlog {
   border: 0.1rem solid v.$color-gris-claro;
   margin: 2rem 10%;
-  padding-bottom: 0;
-  @include m.grid-columns(5, 0);
+  padding: 1rem;
+  @include m.grid-columns(3, 0);
   .view-button-container {
     border-top: 0.1rem solid v.$color-gris-claro;
     .view-button {
@@ -39,6 +39,10 @@ body.dark .container-search {
       justify-content: center;
       width: 5rem;
     }
+  }
+  .task-card {
+    margin: 0.5rem;
+    max-width: 25rem;
   }
 }
 
@@ -54,31 +58,39 @@ body.dark {
 @media (max-width: v.$mobile) {
   .backlog {
     margin: auto;
+    padding: 2rem 0;
     border-left: none;
     border-right: none;
     min-width: 50rem;
     overflow: auto;
-    @include m.grid-columns(3, 0);
-    font-size: 1.2rem;
+    @include m.grid-columns(2, 0);
+    font-size: 2rem;
     .profile {
       width: 4rem;
       height: 4rem;
       margin: auto;
     }
+    .task-card {
+      margin: auto;
+      max-width: 20rem;
+      padding-bottom:0;
+      margin-bottom: 1.5rem;
+    }
   }
   .view-button-container {
     .view-button {
-      font-size: 1.2rem;
-      width: 2.5rem;
-      height: 2.5rem;
+      font-size: 2rem;
+      width: 5rem;
+      height: 4rem;
     }
   }
 
   .container-search {
     input {
       width: 80%;
-      padding: 1rem;
+      padding: 2rem;
       margin: 0.25rem auto;
+      font-size: 2rem;
     }
     margin-bottom: 3rem;
   }

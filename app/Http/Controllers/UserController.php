@@ -24,7 +24,6 @@ class UserController extends Controller
         $tokenData = $this->getTokenData($request);
 
         $tokenResponse = $this->requestAccessToken($tokenData);
-
         if ($tokenResponse->successful()) {
             $accessToken = $tokenResponse->json()['access_token'];
             session(['access_token' => $accessToken]);
@@ -41,18 +40,18 @@ class UserController extends Controller
                         if (is_array($value)) {
                             $value = json_encode($value);
                         }
-                        $cookies[] = cookie($key, $value, 60);
+                        $cookies[] = cookie()->forever($key, $value);
                     }
 
                     return redirect('project')->withCookies($cookies);
                 } else {
-                    return redirect('/login')->with('error', 'No se pudo recuperar el usuario.');
+                    return redirect('/login')->with('error', 'The user could not be recovered.');
                 }
             } else {
-                return redirect('/login')->with('error', 'El token de acceso no es válido.');
+                return redirect('/login')->with('error', 'The access token is invalid.');
             }
         } else {
-            return redirect('/login')->with('error', 'El usuario o la contraseña no son válidos.');
+            return redirect('/login')->with('error', 'The username or password is not valid.');
         }
     }
 
@@ -82,15 +81,6 @@ class UserController extends Controller
         ])->get(getenv("API_TASKPRO_URL") . 'validate');
     }
 
-    protected function createValidationCookie($validationResponseJson)
-    {
-        return cookie('validation', json_encode($validationResponseJson), 60);
-    }
-
-    protected function redirectWithCookie($cookie)
-    {
-        return redirect("/project")->withCookie($cookie);
-    }
 
     public function logout()
     {
@@ -101,6 +91,11 @@ class UserController extends Controller
 
         if ($response->successful()) {
             session()->forget('access_token');
+            $cookies = request()->cookies;
+            foreach ($cookies->keys() as $cookieName) {
+                setcookie($cookieName, '', time() - 3600);
+            }
+            return redirect()->route('login');
         }
     }
 

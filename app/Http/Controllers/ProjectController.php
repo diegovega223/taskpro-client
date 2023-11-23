@@ -65,6 +65,15 @@ class ProjectController extends Controller
         ])->get(getenv("API_TASKPRO_URL") . "proyecto/listarproyectos/" . $id . "?page=" . $page);
 
         $proyectos = $response->json();
-        return view('/project', ['proyectos' => $proyectos]);
+        return view('project', ['proyectos' => $proyectos]);
+    }
+
+    public function deleteProject(Request $request, $id)
+    {
+        $accessToken = session('access_token');
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken,
+        ])->delete(getenv("API_TASKPRO_URL") . "proyecto/" . $id);
+        return  redirect()->route('project')->with('success', 'Project deleted successfully');
     }
 }

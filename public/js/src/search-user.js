@@ -53,7 +53,6 @@ function asignarRol() {
     crearBloqueUsuarioAsignado(username, role);
 
     document.getElementById("user-search").value = "";
-    document.getElementById("rol").value = "";
 
     console.log(userRoles);
   } else {

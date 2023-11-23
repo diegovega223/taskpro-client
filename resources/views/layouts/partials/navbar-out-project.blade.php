@@ -1,6 +1,6 @@
     <header class="navbar">
         <div class="logo-mobile">
-            <a href="/project"> <img src="img/taskpro.png" alt="Logo" class="logo"></a>
+            <a href="/project"> <img src="{{ asset('img/taskpro.png') }}" alt="Logo" class="logo"></a>
         </div>
         <div class="mobile-menu">
             <span class="bar"></span>
@@ -21,17 +21,17 @@
                 </label>
             </li>
             <li>
-            <a href="/logout">
-                <button class="log-out">
-                    <span class="material-icons">
-                        logout
-                    </span>LOG OUT
-                </button>
+                <a href="/logout">
+                    <button class="log-out">
+                        <span class="material-icons">
+                            logout
+                        </span>LOG OUT
+                    </button>
                 </a>
             </li>
-        
+
             <li class="profile">
-                  <p>{{ ucfirst(substr(request()->cookie('name'), 0, 1)) }}</p>
+                <p>{{ ucfirst(substr(request()->cookie('name'), 0, 1)) }}</p>
             </li>
         </ul>
     </header>

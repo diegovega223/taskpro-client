@@ -10,7 +10,7 @@
                 <form action="" class="form-profile">
                     <label for="fileInput" class="image-profile">
                         <input type="file" accept="image/*" id="fileInput" style="display: none;" />
-                        <img id="profileImage" src="img/profile-default.jpg" alt="Perfil" />
+                        <img id="profileImage" src="{{ asset('img/profile-default.jpg') }}" alt="Perfil" />
                         <span class="material-icons camera">
                             photo_camera
                         </span>
@@ -29,4 +29,5 @@
             </div>
         </div>
     </div>
+     <script src="{{ asset('js/src/profile.js') }}"></script>
 @endsection

@@ -42,10 +42,18 @@ body.dark .project-data {
   }
   padding: 2rem;
   justify-content: center;
+  .profile p {
+    background: v.$color-secundario;
+    color: v.$color-blanco-gris;
+  }
 }
 
 body.dark .assigned-user-project-container {
   border: 0.1rem solid v.$color-gris;
+  .profile p {
+    background: v.$color-principal;
+    color: v.$color-negro;
+  }
 }
 
 .letter-role {
@@ -112,6 +120,7 @@ body.dark .assigned-user-project {
   margin: 0.5rem auto;
   border: 0.1rem solid v.$color-gris-claro;
   border-radius: 0.4rem;
+  font-size: 1.5rem;
   option {
     color: v.$color-negro;
   }

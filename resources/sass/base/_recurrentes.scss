@@ -108,12 +108,12 @@ body.dark .alert {
 
 .search-result-item:hover {
   color: v.$color-secundario;
-  background-color: v.$color-blanco-gris;
+  background-color: v.$color-blanco;
   border: 0.1rem solid v.$color-gris-claro;
 }
 
 .search-result-item {
-  color: black;
+  color: v.$color-negro;
   cursor: pointer;
   text-align: center;
   width: 85%;
@@ -125,15 +125,121 @@ body.dark .alert {
   margin: 0;
 }
 
+
+body.dark .search-result-item {
+  color: v.$color-blanco;
+  background-color: v.$color-negro;
+  border: 0.1rem solid v.$color-gris;
+}
+
+body.dark .search-result-item:hover {
+  color: v.$color-principal;
+  background-color: v.$color-bg-dark;
+  border: 0.1rem solid v.$color-gris;
+}
+
 @media (max-width: v.$tablet) {
   .search-result-item {
     width: 95%;
     padding: 0.8rem 0;
     margin: 0.5rem auto;
     margin-top: 0;
-  }}
-
+  }
+}
 
 input#user-search.input-project {
   margin-bottom: 0;
+}
+
+.modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content {
+  background-color: v.$color-blanco;
+  margin: 15% auto;
+  width: 40rem;
+  height: 15rem;
+  color: v.$color-negro;
+}
+
+
+.modal-header {
+  padding: 1rem;
+  background-color: v.$color-secundario;
+  color: v.$color-blanco;
+  text-align: center;
+}
+
+body.dark .modal-header {
+  padding: 1rem;
+  background-color: v.$color-secundario;
+  color: v.$color-negro;
+  text-align: center;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.modal-text {
+  text-align: center;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-button,
+a.modal-button {
+  width: 12rem;
+  padding: auto;
+  margin: 1rem;
+  background-color: v.$color-gris-claro;
+  color: v.$color-negro;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: background-color 0.5s;
+  font-size: 1.4rem;
+  border-radius: 0.4rem;
+  height: 3rem;
+}
+a.modal-button:hover,
+.modal-button:hover {
+  background-color: v.$color-secundario;
+  color: v.$color-blanco;
+}
+
+body.dark {
+  .modal-button,
+  a.modal-button {
+    background-color: v.$color-gris;
+    color: v.$color-blanco;
+  }
+  .modal-header {
+    padding: 1rem;
+    background-color: v.$color-principal;
+    color: v.$color-negro;
+  }
+
+  .modal-content {
+    background-color: v.$color-negro;
+  }
+
+  a.modal-button:hover {
+    background-color: v.$color-bg-dark;
+  }
 }

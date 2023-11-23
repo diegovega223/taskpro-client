@@ -225,12 +225,12 @@ body.dark .alert {
 }
 .search-result-item:hover {
   color: #f3721f;
-  background-color: #e3e3e3;
+  background-color: #ffffff;
   border: 0.1rem solid #ccc;
 }
 
 .search-result-item {
-  color: black;
+  color: #333333;
   cursor: pointer;
   text-align: center;
   width: 85%;
@@ -240,6 +240,18 @@ body.dark .alert {
   font-size: 1.4rem;
   padding: 0.7rem 5%;
   margin: 0;
+}
+
+body.dark .search-result-item {
+  color: #ffffff;
+  background-color: #333333;
+  border: 0.1rem solid #444444;
+}
+
+body.dark .search-result-item:hover {
+  color: #fac710;
+  background-color: #2e2e2e;
+  border: 0.1rem solid #444444;
 }
 
 @media (max-width: 76.8rem) {
@@ -252,6 +264,96 @@ body.dark .alert {
 }
 input#user-search.input-project {
   margin-bottom: 0;
+}
+
+.modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #ffffff;
+  margin: 15% auto;
+  width: 40rem;
+  height: 15rem;
+  color: #333333;
+}
+
+.modal-header {
+  padding: 1rem;
+  background-color: #f3721f;
+  color: #ffffff;
+  text-align: center;
+}
+
+body.dark .modal-header {
+  padding: 1rem;
+  background-color: #f3721f;
+  color: #333333;
+  text-align: center;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.modal-text {
+  text-align: center;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-button,
+a.modal-button {
+  width: 12rem;
+  padding: auto;
+  margin: 1rem;
+  background-color: #ccc;
+  color: #333333;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: background-color 0.5s;
+  font-size: 1.4rem;
+  border-radius: 0.4rem;
+  height: 3rem;
+}
+
+a.modal-button:hover,
+.modal-button:hover {
+  background-color: #f3721f;
+  color: #ffffff;
+}
+
+body.dark .modal-button,
+body.dark a.modal-button {
+  background-color: #444444;
+  color: #ffffff;
+}
+body.dark .modal-header {
+  padding: 1rem;
+  background-color: #fac710;
+  color: #333333;
+}
+body.dark .modal-content {
+  background-color: #333333;
+}
+body.dark a.modal-button:hover {
+  background-color: #2e2e2e;
 }
 
 #logo {
@@ -863,12 +965,26 @@ body.dark .container-project {
   font-size: 1.5rem;
 }
 
-.card-header h2,
-.card-body {
+.card-header h2 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   padding: 1rem;
+}
+
+.card-body p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow-y: auto;
+  margin: 0.5rem 1rem;
+  padding: 0 1rem;
+  height: 14rem;
+  width: 100%;
+  border-bottom: 0.2rem solid #ccc;
+}
+
+body.dark .card-body p {
+  border-bottom: 0.2rem solid #333333;
 }
 
 .card:hover {
@@ -1069,9 +1185,17 @@ body.dark .project-data {
 .assigned-user-project-container .column {
   border: none;
 }
+.assigned-user-project-container .profile p {
+  background: #f3721f;
+  color: #e3e3e3;
+}
 
 body.dark .assigned-user-project-container {
   border: 0.1rem solid #444444;
+}
+body.dark .assigned-user-project-container .profile p {
+  background: #fac710;
+  color: #333333;
 }
 
 .letter-role {
@@ -1141,6 +1265,7 @@ body.dark .assigned-user-project:hover {
   margin: 0.5rem auto;
   border: 0.1rem solid #ccc;
   border-radius: 0.4rem;
+  font-size: 1.5rem;
 }
 .input-project option {
   color: #333333;
@@ -1488,6 +1613,7 @@ body.dark .container-create-task .subtask-box {
   padding: 1rem 1rem;
   word-break: break-all;
   width: calc(100% - 2.2rem);
+  font-size: 1.5rem;
 }
 .subtask-content .subtask-box ol li.subtask .material-icons {
   font-size: 3rem;
@@ -1563,7 +1689,51 @@ body.dark .assigned-task .assigned-user-project:hover {
   border: 0.1rem solid #fac710;
 }
 
+.task-date-content input {
+  width: 50%;
+  padding: 1rem;
+}
+
+.container-task-date-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.align-items {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.custom-select-input {
+  width: 70%;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1.6;
+}
+
+body.dark .custom-select-input {
+  background-color: #2e2e2e;
+  color: #ffffff;
+  border: 1px solid #444444;
+}
+
 @media (max-width: 48rem) {
+  .task-date-content input {
+    width: 95%;
+    padding: 1rem;
+    margin: 0.5rem auto;
+  }
+  .custom-select-input {
+    width: 70%;
+    padding: 1rem;
+    margin: auto;
+  }
+  .container-task-date-content {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
   .container-create-task {
     display: grid;
     grid-template-columns: 1fr;
@@ -1591,6 +1761,31 @@ body.dark .assigned-task .assigned-user-project:hover {
   }
   .add-task-button span.material-icons {
     font-size: 3.3rem !important;
+  }
+}
+.assigned-task input#username.input-project {
+  width: 85%;
+  padding: 1rem 5%;
+  margin: 0;
+  margin-top: 1rem;
+}
+.assigned-task .search-result-item {
+  text-align: center;
+  padding: 1rem 5%;
+}
+
+@media (max-width: 48rem) {
+  .assigned-task {
+    width: 75%;
+    margin: 1rem auto;
+  }
+  input#username.input-project {
+    width: 100%;
+    padding: 1rem;
+    margin: auto;
+  }
+  .search-result-item {
+    width: 85%;
   }
 }
 .button-container {
@@ -1626,9 +1821,9 @@ body.dark .container-search input {
 .backlog {
   border: 0.1rem solid #ccc;
   margin: 2rem 10%;
-  padding-bottom: 0;
+  padding: 1rem;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 0;
 }
 .backlog .view-button-container {
@@ -1639,6 +1834,10 @@ body.dark .container-search input {
   align-items: center;
   justify-content: center;
   width: 5rem;
+}
+.backlog .task-card {
+  margin: 0.5rem;
+  max-width: 25rem;
 }
 
 body.dark .backlog {
@@ -1651,32 +1850,40 @@ body.dark .backlog .view-button-container {
 @media (max-width: 48rem) {
   .backlog {
     margin: auto;
+    padding: 2rem 0;
     border-left: none;
     border-right: none;
     min-width: 50rem;
     overflow: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 0;
-    font-size: 1.2rem;
+    font-size: 2rem;
   }
   .backlog .profile {
     width: 4rem;
     height: 4rem;
     margin: auto;
   }
+  .backlog .task-card {
+    margin: auto;
+    max-width: 20rem;
+    padding-bottom: 0;
+    margin-bottom: 1.5rem;
+  }
   .view-button-container .view-button {
-    font-size: 1.2rem;
-    width: 2.5rem;
-    height: 2.5rem;
+    font-size: 2rem;
+    width: 5rem;
+    height: 4rem;
   }
   .container-search {
     margin-bottom: 3rem;
   }
   .container-search input {
     width: 80%;
-    padding: 1rem;
+    padding: 2rem;
     margin: 0.25rem auto;
+    font-size: 2rem;
   }
 }
 .profile-container {

@@ -48,6 +48,7 @@ body.dark .container-create-task {
         padding: 1rem 1rem;
         word-break: break-all;
         width: calc(100% - 2.2rem);
+        font-size: 1.5rem;
 
         .material-icons {
           font-size: 3rem;
@@ -133,7 +134,51 @@ body.dark .assigned-task {
   }
 }
 
+.task-date-content input {
+  width: 50%;
+  padding: 1rem;
+}
+
+.container-task-date-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.align-items {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.custom-select-input {
+  width: 70%;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1.6;
+}
+
+body.dark .custom-select-input {
+  background-color: v.$color-bg-dark;
+  color: v.$color-blanco;
+  border: 1px solid v.$color-gris;
+}
 @media (max-width: v.$mobile) {
+  .task-date-content input {
+    width: 95%;
+    padding: 1rem;
+    margin: 0.5rem auto;
+  }
+
+  .custom-select-input {
+    width: 70%;
+    padding: 1rem;
+    margin: auto;
+  }
+  .container-task-date-content {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
   .container-create-task {
     display: grid;
     grid-template-columns: 1fr;
@@ -163,6 +208,37 @@ body.dark .assigned-task {
     span.material-icons {
       font-size: 3.3rem !important;
     }
+  }
+}
+
+.assigned-task {
+  input#username.input-project {
+    width: 85%;
+    padding: 1rem 5%;
+    margin: 0;
+    margin-top: 1rem;
+  }
+
+  .search-result-item {
+    text-align: center;
+    padding: 1rem 5%;
+  }
+}
+
+@media (max-width: v.$mobile) {
+  .assigned-task{
+    width: 75%;
+    margin: 1rem auto;
+  
+  }
+
+  input#username.input-project {
+    width: 100%;
+    padding: 1rem;
+    margin: auto;
+  }
+  .search-result-item {
+    width: 85%;
   }
 }
 

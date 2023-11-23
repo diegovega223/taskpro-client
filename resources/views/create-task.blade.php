@@ -1,7 +1,7 @@
 @extends('layouts.base-in-project')
 @section('content')
-    <div class="container-menu-body">   
-    @include('layouts.partials.sidebar')
+    <div class="container-menu-body">
+        @include('layouts.partials.sidebar')
         <div class="right-container">
             <div class="text-center mb-2">
                 <h1 class="title title-kanban">Create task</h1>
@@ -30,69 +30,53 @@
                     </h2>
                     <div class="subtask-box" id="subtask-container">
                         <ol>
-                          
-                   
+
+
                         </ol>
                     </div>
                 </div>
-                <div class="task-date-content">
-                    <h2>Task time</h2>
-                    <div class="estimated-project">
-                        <div>
-                            <h3>Deadline</h3>
-                            <div class="align-items">
-                                <span class="material-icons">
-                                    calendar_today
-                                </span>
-                                <input type="date" class="custom-date-input">
-                            </div>
-                            <div class="align-items">
-                                <span class="material-icons">
-                                    watch_later
-                                </span>
-                                <input type="time" class="custom-date-input">
-                            </div>
+                <div class="container-task-date-content">
+                    <div class="">
+                        <h2>Deadline</h2>
+                        <div class="align-items">
+                            <input type="date" class="custom-date-input" id="Deadline">
                         </div>
+                    </div>
 
-                        <div>
-                            <div>
-                                <h3>Reminder</h3>
-                                <div class="align-items">
-                                    <span class="material-icons">
-                                        calendar_today
-                                    </span>
-                                    <input type="date" class="custom-date-input ">
-                                </div>
-                                <div class="align-items">
-                                    <span class="material-icons">
-                                        watch_later
-                                    </span>
-                                    <input type="time" class="custom-date-input">
-                                </div>
-                            </div>
+                    <div class="">
+                        <h2>Prioridad</h2>
+                        <div class="align-items">
+                            <select class="custom-select-input" id="Prioridad">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="5">5</option>
+                                <option value="8">8</option>
+                                <option value="13">13</option>
+                                <option value="21">21</option>
+                                <option value="34">34</option>
+                            </select>
                         </div>
                     </div>
                 </div>
+
                 <div class="assigned-task">
                     <h2>User assignment</h2>
-                    <div class="assigned-user-project">
-                        <div class="profile">
-                            <img src="img/perfil-1.jpg">
-                        </div>
-                        <p>Ana Pérez</p>
-                        <span class="material-icons">
-                            disabled_by_default
-                        </span>
-                    </div>
-                    <input type="search" class="input-project" placeholder="Username">
-                    <button>assigned</button>
+                    <input type="text" id="username" placeholder="Username" class="input-project">
+                    <div id="search-results" class="search-results"></div>
                 </div>
-                
             </div>
+
+
             <div class="button-container">
                 <button class="accept-button">Accept</button>
             </div>
-        
         </div>
+
+     @if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
     </div>
-@endsection
+@endif
+        <script src="{{ asset('js/src/subtask.js') }}"></script>
+    @endsection

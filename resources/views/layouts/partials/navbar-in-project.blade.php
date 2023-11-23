@@ -1,6 +1,6 @@
 <header class="navbar">
     <div class="logo-mobile">
-        <a href="/project"> <img src="img/taskpro.png" alt="Logo" class="logo"></a>
+        <a href="/project"> <img src="{{ asset('img/taskpro.png') }}" alt="Logo" class="logo"></a>
     </div>
     <div class="mobile-menu">
         <span class="bar"></span>
@@ -21,7 +21,7 @@
             </label>
         </li>
         <li>
-            <a href="logout">
+            <a href="/logout">
                 <button class="log-out">
                     <span class="material-icons">
                         logout
@@ -37,13 +37,17 @@
 </header>
 <div class="nav-menu">
     <ul>
-        <li> <a href="kanban-board.html"><i class="material-icons">view_kanban</i>Kanban Board </a></li>
-        <li><a href="create-task.html"><i class="material-icons">assignment</i>Create Task</a></li>
-        <li><a href="backlog.html"><i class="material-icons">format_list_bulleted</i>Backlog</a></li>
+        <li> <a href="kanban-board/{{ request()->route('project') }}"><i class="material-icons">view_kanban</i>Kanban
+                Board </a></li>
+        <li><a href="create-task/{{ request()->route('project') }}"><i class="material-icons">assignment</i>Create
+                Task</a></li>
+        <li><a href="backlog/{{ request()->route('project') }}"><i
+                    class="material-icons">format_list_bulleted</i>Backlog</a></li>
         <li>
-            <a href="profile.html"> <span class="material-icons">account_circle</span> Profile</a>
+            <a href="profile"> <span class="material-icons">account_circle</span> Profile</a>
         </li>
-        <li><a href="notifications.html"> <span class="material-icons">notifications_none</span> Notifications</a>
+        <li><a href="notifications/{{ request()->route('project') }}"> <span
+                    class="material-icons">notifications_none</span> Notifications</a>
         </li>
         <li class="switch">
             <label class="switch-label">
@@ -54,7 +58,7 @@
             </label>
         </li>
         <li class="log-out-mobile">
-            <a href="login.html"><button class="log-out">
+            <a href="/logout"><button class="log-out">
                     <span class="material-icons">
                         logout
                     </span>LOG OUT

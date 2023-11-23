@@ -105,4 +105,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/src/kanban-board.js') }}"></script>
 @endsection

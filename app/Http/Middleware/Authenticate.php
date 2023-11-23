@@ -12,8 +12,8 @@ class Authenticate extends Middleware
         $accessToken = $request->session()->get('access_token');
 
         if (!$accessToken) {
-            return route('login');
+            return route('/login');
         }
-        return route('project');
+        return route('/project');
     }
 }

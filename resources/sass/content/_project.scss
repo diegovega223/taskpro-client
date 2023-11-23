@@ -50,14 +50,26 @@ body.dark .container-project {
   }
 }
 
-.card-header h2,
-.card-body {
+.card-header h2 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   padding: 1rem;
 }
+.card-body p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow-y: auto;
+  margin: 0.5rem 1rem;
+  padding: 0 1rem;
+  height: 14rem;
+  width: 100%;
+  border-bottom: 0.2rem solid v.$color-gris-claro;
+}
 
+body.dark .card-body p {
+  border-bottom: 0.2rem solid v.$color-negro;
+}
 .card:hover {
   background-color: v.$color-blanco-gris;
 }
