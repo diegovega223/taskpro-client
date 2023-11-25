@@ -37,16 +37,16 @@
 </header>
 <div class="nav-menu">
     <ul>
-        <li> <a href="kanban-board/{{ request()->route('project') }}"><i class="material-icons">view_kanban</i>Kanban
+        <li> <a href="/kanban-board/{{ request()->route('project') }}"><i class="material-icons">view_kanban</i>Kanban
                 Board </a></li>
-        <li><a href="create-task/{{ request()->route('project') }}"><i class="material-icons">assignment</i>Create
+        <li><a href="/create-task/{{ request()->route('project') }}"><i class="material-icons">assignment</i>Create
                 Task</a></li>
-        <li><a href="backlog/{{ request()->route('project') }}"><i
+        <li><a href="/backlog/{{ request()->route('project') }}"><i
                     class="material-icons">format_list_bulleted</i>Backlog</a></li>
         <li>
-            <a href="profile"> <span class="material-icons">account_circle</span> Profile</a>
+            <a href="/profile"> <span class="material-icons">account_circle</span> Profile</a>
         </li>
-        <li><a href="notifications/{{ request()->route('project') }}"> <span
+        <li><a href="/notifications/{{ request()->route('project') }}"> <span
                     class="material-icons">notifications_none</span> Notifications</a>
         </li>
         <li class="switch">

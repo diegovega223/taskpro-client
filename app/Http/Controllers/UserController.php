@@ -108,4 +108,13 @@ class UserController extends Controller
 
         return response()->json($response->json());
     }
+
+    public function SearchProjectUserByName($project, $user)
+    {
+        $accessToken = session('access_token');
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken,
+        ])->get(getenv('API_TASKPRO_URL') . 'search/' . $project . '/' . $user);
+        return response()->json($response->json());
+    }
 }

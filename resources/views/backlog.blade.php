@@ -17,28 +17,30 @@
             <div class="container-backlog">
                 <div class="backlog">
                     @foreach ($tareas as $tarea)
-                        <div class="task-card" id="{{ $tarea['IDTarea'] }}">
-                            <div class="task-content collapsed">
-                                <div class="header-task">
-                                    {{ $tarea['titulo'] }}
-                                </div>
-                                <div class="user-task">
-                                    @if (!empty($tarea['foto']))
-                                        <img src="{{ $tarea['foto'] }}" alt="{{ $tarea['name'] }}" class="profile-img">
-                                    @else
-                                        <p>{{ $tarea['name'] }}</p>
-                                        <div class="profile">
-                                            {{ strtoupper(substr($tarea['name'], 0, 1)) }}
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="view-button-container">
-                                    <button class="view-button">
-                                        view
-                                    </button>
+                        <a href="{{ route('getTask', ['project' => $project, 'id' => $tarea['IDTarea']]) }}" class="container-backlog-task">
+                            <div class="task-card" id="{{ $tarea['IDTarea'] }}">
+                                <div class="task-content collapsed">
+                                    <div class="header-task">
+                                        {{ $tarea['titulo'] }}
+                                    </div>
+                                    <div class="user-task">
+                                        @if (!empty($tarea['foto']))
+                                            <img src="{{ $tarea['foto'] }}" alt="{{ $tarea['name'] }}" class="profile-img">
+                                        @else
+                                            <p>{{ $tarea['name'] }}</p>
+                                            <div class="profile">
+                                                {{ strtoupper(substr($tarea['name'], 0, 1)) }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="deadline-container">
+
+                                        <p>{{ 'Deadline ' . $tarea['fechaVenc'] }}</p>
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
             </div>

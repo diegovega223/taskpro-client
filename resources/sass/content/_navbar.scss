@@ -2,17 +2,23 @@
 @use "../mixins" as m;
 
 .navbar {
-  width: 100vw; 
+  width: 100vw;
   display: flex;
   margin-bottom: 0;
   justify-content: space-between;
   align-items: center;
-  background-color: v.$color-negro;
+  background-color: v.$color-blanco;
   color: v.$color-blanco;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 5;
+  border-bottom: 0.1rem solid v.$color-gris-claro;
+}
+
+body.dark .navbar {
+  background-color: v.$color-negro;
+  color: v.$color-blanco;
   border-bottom: 0.1rem solid v.$color-gris;
 }
 
@@ -30,8 +36,8 @@
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
-  background: v.$color-gris;
-  color: v.$color-principal;
+  background: v.$color-blanco-gris;
+  color: v.$color-secundario;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,17 +48,27 @@
   }
 }
 
+body.dark .profile {
+  background: v.$color-gris;
+  color: v.$color-principal;
+}
+
 .profile p {
   width: 5rem;
   height: 5rem;
   font-size: 3rem;
   margin: auto;
   border-radius: 50%;
-  background: v.$color-principal;
-  color: v.$color-gris;
+  background: v.$color-secundario;
+  color: v.$color-blanco;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+body.dark .profile p {
+  background: v.$color-principal;
+  color: v.$color-gris;
 }
 
 .profile img {
@@ -76,17 +92,26 @@
   cursor: pointer;
 }
 
-@include m.logo-size(v.$logo-desktop, v.$logo-large, v.$logo-medium, v.$logo-small);
+@include m.logo-size(
+  v.$logo-desktop,
+  v.$logo-large,
+  v.$logo-medium,
+  v.$logo-small
+);
 
 .notification-icon {
-  color: v.$color-principal;
+  color: v.$color-secundario;
   font-size: 3rem;
   cursor: pointer;
 }
 
-.log-out {
+body.dark .notification-icon {
   color: v.$color-principal;
-  background-color: v.$color-gris;
+}
+
+.log-out {
+  color: v.$color-blanco;
+  background-color: v.$color-secundario;
   width: 10rem;
   height: 3rem;
   border: none;
@@ -97,7 +122,11 @@
   font-size: 1rem;
 }
 
-.log-out:hover,
+.log-out:hover {
+  color: v.$color-secundario;
+  background-color: v.$color-gris-switch;
+}
+
 body.dark .log-out:hover {
   color: v.$color-principal;
   background-color: v.$color-bg-dark;

@@ -11,20 +11,26 @@
   display: inline-block;
   width: 10rem;
   height: 3rem;
-  background-color: v.$color-gris;
+  background-color: v.$color-gris-switch;
   border-radius: 3rem;
   cursor: pointer;
 }
 
 .switch-label:hover {
+  background-color: v.$color-gris-claro;
+}
+
+body.dark .switch-label {
+  background-color: v.$color-gris;
+}
+
+body.dark .switch-label:hover {
   background-color: v.$color-bg-dark;
 }
 
 .switch-label input {
   display: none;
 }
-
-
 
 .modo-text {
   position: absolute;
@@ -39,7 +45,7 @@
 
 .left.active {
   left: 0;
-  color: v.$color-negro;
+  color: v.$color-blanco;
 }
 
 .right.active {
@@ -54,7 +60,7 @@
 
 .right {
   right: 0;
-  color: v.$color-principal;
+  color: v.$color-secundario;
 }
 
 .switch-label input:checked + .slider {
@@ -88,13 +94,18 @@
   display: block;
   margin: auto;
 }
+
 .slider {
   position: absolute;
   width: 50%;
   height: 100%;
-  background-color: v.$color-principal;
+  background-color: v.$color-secundario;
   border-radius: 3rem;
   transition: 0.4s;
   left: 0;
   transform: translateX(0);
+}
+
+body.dark .slider {
+  background-color: v.$color-principal;
 }

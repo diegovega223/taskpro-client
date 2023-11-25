@@ -11,6 +11,10 @@
   margin: 0.5rem auto;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  background-color: v.$color-secundario;
+}
+
+body.dark .bar {
   background-color: v.$color-principal;
 }
 
@@ -23,26 +27,36 @@
     position: fixed;
     top: -100%;
     flex-direction: column;
-    background-color: v.$color-negro;
+    background-color: v.$color-blanco;
     width: 100vw;
     text-align: center;
     transition: 0.5s;
     border-bottom: 0.1rem solid v.$color-gris;
   }
 
+  body.dark .nav-menu {
+    background-color: v.$color-negro;
+    border-bottom: 0.1rem solid v.$color-gris;
+  }
+
   body.mobile .nav-menu {
-    top: 8rem;  
+    top: 8rem;
   }
 
   ul {
     padding-left: 0;
   }
+
   .mobile-menu {
     display: block;
     cursor: pointer;
-    color: v.$color-principal;
+    color: v.$color-secundario;
     margin-right: 10%;
     width: 10rem !important;
+  }
+
+  body.dark .mobile-menu {
+    color: v.$color-principal;
   }
 }
 
@@ -74,11 +88,15 @@ body.mobile .mobile-menu .bar:nth-child(3) {
 
 .nav-menu ul li a {
   text-decoration: none;
-  color: inherit;
+  color: v.$color-negro;
   display: block;
   margin: auto;
   display: flex;
   align-items: center;
+}
+
+body.dark .nav-menu ul li a {
+  color: v.$color-blanco;
 }
 .nav-menu ul li a .material-icons {
   margin-right: 0.5rem;

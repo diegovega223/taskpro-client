@@ -18,10 +18,13 @@ function buscarUsuario() {
   }
 }
 
+let searchResultsData = [];
+
 function manejarResultadosBusqueda(data) {
   var searchResults = document.getElementById("search-results");
   searchResults.innerHTML = "";
   if (Array.isArray(data)) {
+    searchResultsData = data; 
     data.forEach((user) => {
       var result = document.createElement("div");
       result.textContent = user.name;
@@ -40,25 +43,58 @@ function manejarResultadosBusqueda(data) {
 function asignarRol() {
   var username = document.getElementById("user-search").value;
   var role = document.getElementById("rol").value;
-  var userExists = userRoles.some(function (userRole) {
+  var userExists = searchResultsData.some(function (user) {
+    return user.name === username;
+  });
+
+  var userAlreadyAssigned = userRoles.some(function (userRole) {
     return userRole.username === username;
   });
-  if (!userExists) {
+
+  if (userExists && !userAlreadyAssigned) {
     let userRole = {
       username: username,
       role: role,
     };
     userRoles.push(userRole);
-
+    document.getElementById("error-message").style.display = "none";
     crearBloqueUsuarioAsignado(username, role);
-
     document.getElementById("user-search").value = "";
-
     console.log(userRoles);
+  } else if (userAlreadyAssigned) {
+    document.getElementById("error-message").innerText =
+      username + " has already been assigned!";
+    document.getElementById("error-message").style.display = "block";
   } else {
-    console.log("El usuario ya existe en el array.");
+    document.getElementById("error-message").innerText =
+      username + " does not exist!";
+    document.getElementById("error-message").style.display = "block";
   }
 }
+
+document.getElementById("assign-button").addEventListener("click", function () {
+  let inputUsername = document.getElementById("user-search").value;
+  let role = document.getElementById("rol").value;
+  let searchResultItems = document.querySelectorAll(".search-result-item");
+  let userExists = false;
+
+  for (let item of searchResultItems) {
+    if (item.innerText === inputUsername) {
+      userExists = true;
+      break;
+    }
+  }
+
+  if (userExists) {
+    userRoles.push({ username: inputUsername, role: role });
+    document.getElementById("error-message").style.display = "none";
+    crearBloqueUsuarioAsignado(inputUsername, role);
+  } else {
+    document.getElementById("error-message").innerText =
+      inputUsername + " no existe!";
+    document.getElementById("error-message").style.display = "block";
+  }
+});
 
 function crearBloqueUsuarioAsignado(username, role) {
   var assignedUserProject = document.createElement("div");

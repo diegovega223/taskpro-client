@@ -15,7 +15,6 @@
     border: 0.1rem solid v.$color-gris-claro;
     border-radius: 0.4rem;
   }
-  margin-bottom: 5rem;
 }
 
 body.dark .container-search {
@@ -28,22 +27,30 @@ body.dark .container-search {
 
 .backlog {
   border: 0.1rem solid v.$color-gris-claro;
-  margin: 2rem 10%;
+  margin: 2rem auto;
   padding: 1rem;
+  max-width: 85rem;
   @include m.grid-columns(3, 0);
-  .view-button-container {
+  .deadline-container {
     border-top: 0.1rem solid v.$color-gris-claro;
-    .view-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 5rem;
-    }
+    text-align: center;
+  }
+  .header-task {
+    text-align: center;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: v.$color-blanco;
   }
   .task-card {
     margin: 0.5rem;
     max-width: 25rem;
   }
+}
+
+.container-backlog-task{
+  margin: auto;
 }
 
 body.dark {
@@ -52,6 +59,16 @@ body.dark {
     .view-button-container {
       border-top: 0.1rem solid v.$color-gris;
     }
+  }
+}
+
+body.dark .backlog {
+  border: 0.1rem solid v.$color-gris;
+  .deadline-container {
+    border-top: 0.1rem solid v.$color-gris;
+  }
+  .header-task {
+    color: v.$color-negro;
   }
 }
 
@@ -73,15 +90,8 @@ body.dark {
     .task-card {
       margin: auto;
       max-width: 20rem;
-      padding-bottom:0;
+      padding-bottom: 0;
       margin-bottom: 1.5rem;
-    }
-  }
-  .view-button-container {
-    .view-button {
-      font-size: 2rem;
-      width: 5rem;
-      height: 4rem;
     }
   }
 

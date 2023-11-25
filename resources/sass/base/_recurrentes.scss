@@ -90,13 +90,22 @@ body.dark ::selection {
   padding: 1rem;
   margin: 0 auto;
   margin-top: 1.5rem;
-  color: v.$color-secundario;
+  text-align: center;
   position: relative;
 }
 
-body.dark .alert {
-  color: v.$color-principal;
+.alert-danger {
+  color: v.$color-danger;
 }
+
+.alert-error {
+  color: v.$color-error;
+}
+
+.mesagge-success {
+  color: v.$color-success;
+}
+
 
 @media (max-width: v.$tablet) {
   .alert {
@@ -124,7 +133,6 @@ body.dark .alert {
   padding: 0.7rem 5%;
   margin: 0;
 }
-
 
 body.dark .search-result-item {
   color: v.$color-blanco;
@@ -171,7 +179,6 @@ input#user-search.input-project {
   height: 15rem;
   color: v.$color-negro;
 }
-
 
 .modal-header {
   padding: 1rem;
@@ -242,4 +249,11 @@ body.dark {
   a.modal-button:hover {
     background-color: v.$color-bg-dark;
   }
+}
+
+.inputError {
+  color: v.$color-error;
+  display: none;
+  font-size: 1.2rem;
+  margin: 0;
 }

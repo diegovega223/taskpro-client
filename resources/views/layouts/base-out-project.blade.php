@@ -24,8 +24,6 @@
     <script src="https://kit.fontawesome.com/c1950bcd45.js" crossorigin="anonymous"></script>
 
     <script src="{{ asset('js/dist/bundle.js') }}"></script>
-    <script type="module" src="{{ asset('js/src/search-user.js') }}"></script>
-
 </body>
 
 </html>

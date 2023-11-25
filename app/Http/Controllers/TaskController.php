@@ -16,13 +16,12 @@ class TaskController extends Controller
             $accessToken = session('access_token');
 
             $tarea = $this->newTask($data, $accessToken);
-            $this->assignTaskToUser($request, $tarea, $project, $accessToken);
-            return redirect("/create-task/{$project}")->with('message', 'tarea creada con exito');
+            $this->assignTaskToUser($data['userId'], $tarea, $project, $accessToken);
+            return response()->json(['success' => true, 'message' => 'Task created successfully!']);
         } catch (Exception $e) {
             return back()->with('error', $e->getMessage());
         }
     }
-
     public function newTask($data, $accessToken)
     {
         $subTareas = [];
@@ -43,28 +42,33 @@ class TaskController extends Controller
             ];
         }, $data['subTareas']);
 
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $accessToken,
-        ])->post(getenv("API_TASKPRO_URL") . 'tarea', [
-            'titulo' => $data['title'],
-            'descripcion' => $data['description'],
-            'fechaVenc' => $data['fechaVenc'],
-            'prioridad' => $data['prioridad'],
-            'estado' => $data['estado'],
-            'subTareas' => $subTareas,
-        ]);
-
-        return $response->json();
+        try {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $accessToken,
+            ])->post(getenv("API_TASKPRO_URL") . 'tarea', [
+                'titulo' => $data['title'],
+                'descripcion' => $data['description'],
+                'fechaVenc' => $data['fechaVenc'],
+                'prioridad' => $data['prioridad'],
+                'estado' => $data['estado'],
+                'subTareas' => $subTareas,
+            ]);
+        } catch (Exception $e) {
+            Log::error('Excepción al crear nueva tarea: ', ['message' => $e->getMessage()]);
+            return ['error' => $e->getMessage()];
+        }
+        $task = $response->json();
+        return $task;
     }
 
-    public function assignTaskToUser(Request $request, $tarea, $project, $accessToken)
+    public function assignTaskToUser($userId, $task, $project, $accessToken)
     {
-        $id = $request->cookie('id');
+
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $accessToken,
         ])->post(getenv("API_TASKPRO_URL") . 'tarea/asignarUsuarioTarea', [
-            'IDTarea' => $tarea['IDTarea'],
-            'IDUsuario' => $id,
+            'IDTarea' => $task['IDTarea'],
+            'IDUsuario' => $userId,
             'IDProyecto' => $project,
         ]);
 
@@ -85,8 +89,6 @@ class TaskController extends Controller
             if (!is_array($tareas)) {
                 $tareas = [];
             }
-            Log::info('Response from API', ['response' => $response->json()]);
-
             return view('backlog')->with([
                 'tareas' => $tareas,
                 'project' => $project,
@@ -116,13 +118,103 @@ class TaskController extends Controller
             if (!is_array($tareas)) {
                 $tareas = [];
             }
-            Log::info('Response from API', ['response' => $response->json()]);
-
             return view('backlog')->with([
                 'tareas' => $tareas,
                 'project' => $project,
             ]);
         } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+    }
+    public function getTask($project, $id)
+    {
+        $accessToken = session('access_token');
+        try {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $accessToken,
+            ])->get(getenv("API_TASKPRO_URL") . "tarea/detalles/{$id}");
+
+            $tarea = $response->json();
+
+            return view('view-task', ['tarea' => $tarea]);
+        } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function updateSubTask(Request $request, $id)
+    {
+        $accessToken = session('access_token');
+        $data = $request->all();
+
+        try {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $accessToken,
+            ])->put(getenv("API_TASKPRO_URL") . "tarea/subtarea/{$id}", $data);
+            return $response->json();
+        } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function deleteTask($project, $id)
+    {
+        $accessToken = session('access_token');
+        try {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $accessToken,
+            ])->delete(getenv("API_TASKPRO_URL") . "tarea/{$id}");
+            return redirect()->route('backlog', ['project' => $project])->with('response', $response->json());
+        } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function getModifyTask($project, $id)
+    {
+        $accessToken = session('access_token');
+        try {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $accessToken,
+            ])->get(getenv("API_TASKPRO_URL") . "tarea/detalles/{$id}");
+            $tarea = $response->json();
+            return view('modify-task', ['tarea' => $tarea]);
+        } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function changeStateTask(Request $request, $project, $id)
+    {
+        $accessToken = session('access_token');
+        try {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $accessToken,
+            ])->put(getenv("API_TASKPRO_URL") . "tarea/modificarEstado/{$id}", [
+                'estado' => $request->input("estado"),
+            ]);
+            return redirect()->route('backlog', ['project' => $project])->with('response', $response->json());
+        } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+    }
+    public function getKanban(Request $request, $project)
+    {
+        $accessToken = session('access_token');
+        $url = getenv("API_TASKPRO_URL") . "kanban-board/{$project}";
+        try {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $accessToken,
+            ])->get($url);
+            $tareas = $response->json();
+            if (!is_array($tareas)) {
+                $tareas = [];
+            }
+            return view('kanban-board')->with([
+                'tareas' => $tareas,
+            ]);
+        } catch (Exception $e) {
+            Log::error('Error fetching tasks', ['error' => $e->getMessage()]);
             return back()->with('error', $e->getMessage());
         }
     }

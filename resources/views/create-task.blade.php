@@ -9,8 +9,10 @@
             <div class="container-create-task">
                 <div class="task-info-content">
                     <h2>Title task</h2>
+                    <p id="error-message-title" class='inputError'></p>
                     <input type="text" class="input-project" placeholder="Title">
                     <h2>Description task</h2>
+                    <p id="error-message-description" class='inputError'></p>
                     <textarea name="Description-task" class="input-project" placeholder="Description"></textarea>
                 </div>
                 <div class="subtask-content">
@@ -38,6 +40,7 @@
                 <div class="container-task-date-content">
                     <div class="">
                         <h2>Deadline</h2>
+                        <p id="error-message-deadline" class='inputError'></p>
                         <div class="align-items">
                             <input type="date" class="custom-date-input" id="Deadline">
                         </div>
@@ -62,21 +65,17 @@
 
                 <div class="assigned-task">
                     <h2>User assignment</h2>
+                    <p id="error-message-assignment" class='inputError'></p>
                     <input type="text" id="username" placeholder="Username" class="input-project">
                     <div id="search-results" class="search-results"></div>
                 </div>
             </div>
 
-
+            <div id="message" class="alert mesagge-success"></div>
             <div class="button-container">
                 <button class="accept-button">Accept</button>
             </div>
-        </div>
 
-     @if (session('message'))
-    <div class="alert alert-success">
-        {{ session('message') }}
-    </div>
-@endif
-        <script src="{{ asset('js/src/subtask.js') }}"></script>
+        </div>
+        <script src="{{ asset('js/src/create-task.js') }}"></script>
     @endsection

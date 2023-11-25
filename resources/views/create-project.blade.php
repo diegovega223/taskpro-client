@@ -52,6 +52,7 @@
             <div class="column assigned-user-project-container">
                 <div class="column">
                     <h2>Username</h2>
+                    <p id="error-message" class='inputError'></p>
                     <input type="search" id="user-search" name="search-user" placeholder="User"
                         class="input-project input-project">
                     <div id="search-results" class="search-results"></div>
@@ -63,7 +64,7 @@
                     </select>
                     <button id="assign-button"> Assign</button>
                 </div>
-                <div class="column">
+                <div class="column">x
                     <h2>User Assign</h2>
                     <div class="assing-box">
                        
@@ -90,4 +91,5 @@
             </div>
         </div>
     </div>
+    <script type="module" src="{{ asset('js/src/create-project.js') }}"></script>
 @endsection

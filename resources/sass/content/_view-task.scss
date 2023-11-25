@@ -1,0 +1,173 @@
+@use "../base/variables" as v;
+@use "../mixins/mixins" as m;
+
+.container-task {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin: auto 5%;
+  gap: 2rem;
+}
+
+@media (max-width: v.$mobile) {
+  .container-task {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0;
+    padding: 0;
+  }
+  .task-details,
+  .sub-tasks {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+body.dark {
+  .task-details,
+  .sub-tasks {
+    border: 0.1rem solid v.$color-gris;
+    background-color: v.$color-negro;
+  }
+  .task-description {
+    background-color: v.$color-bg-dark;
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+}
+
+.task-description {
+  background-color: v.$color-blanco-gris;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.task-details {
+  margin-bottom: 2rem;
+  border: 0.1rem solid v.$color-gris-claro;
+  padding: 2rem;
+}
+
+.task-details h2 {
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.task-details p {
+  color: v.$color-gris-icono;
+  font-size: 1.6rem;
+}
+
+.task-details span {
+  font-weight: bold;
+}
+
+.sub-tasks {
+  margin-bottom: 2rem;
+  border: 0.1rem solid v.$color-gris-claro;
+  padding: 2rem;
+}
+
+.sub-task {
+  background-color: v.$color-blanco-gris;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+}
+
+body.dark .sub-task {
+  background-color: v.$color-bg-dark;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+}
+
+.sub-task p {
+  margin: 0;
+}
+
+.sub-task span {
+  font-weight: bold;
+}
+
+.sub-task {
+  input[type="checkbox"] {
+    display: none;
+
+    & + label {
+      position: relative;
+      padding-left: 3rem;
+      color: v.$color-negro;
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        border: 0.1rem solid v.$color-gris-claro;
+        border-radius: 0.4rem;
+        background-color: v.$color-blanco;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0.45rem;
+        bottom: 0.6rem;
+        width: 0.8rem;
+        height: 1.6rem;
+        border: solid v.$color-secundario;
+        border-width: 0 0.3rem 0.3rem 0;
+        transform: rotate(45deg);
+        display: none;
+      }
+    }
+  }
+
+  input[type="checkbox"]:checked + label::after {
+    display: block;
+  }
+}
+
+body.dark .sub-task {
+  input[type="checkbox"] {
+    display: none;
+
+    & + label {
+      color: v.$color-blanco;
+      &::before {
+        border: 0.1rem solid v.$color-gris-claro;
+        background-color: v.$color-bg-dark;
+      }
+
+      &::after {
+        content: "";
+        border: solid v.$color-principal;
+        border-width: 0 0.3rem 0.3rem 0;
+        transform: rotate(45deg);
+        display: none;
+      }
+    }
+  }
+  input[type="checkbox"]:checked + label::after {
+    display: block;
+  }
+}
+
+.button-task-container {
+  display: flex;
+  justify-content: end;
+  justify-items: center;
+  button {
+    margin: 0 1rem;
+    width: 10rem;
+  }
+}
+
+@media (max-width: v.$mobile) {
+  .button-task-container {
+    justify-content: center;
+    button {
+      margin: 0 1rem;
+      width: 12rem;
+    }
+  }
+}

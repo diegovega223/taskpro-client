@@ -52,7 +52,6 @@
                                 <p>{{ isset($proyecto['proyecto']['descripcion']) ? $proyecto['proyecto']['descripcion'] : '' }}
                                 </p>
                             </div>
-
                             <div class="icons-container">
                                 <a href="/project" class="icon-link" onclick="event.stopPropagation();">
                                     <span class="material-icons">

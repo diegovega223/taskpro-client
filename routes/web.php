@@ -22,15 +22,26 @@ Route::middleware(['access'])->group(function () {
 
 
     Route::get('/search/{user}', [UserController::class, 'search'])->name('search');
-
+    Route::get('/SearchProjectUser/{project}/{user}', [UserController::class, 'SearchProjectUserByName'])->name('SearchProjectUserByName');
     
     Route::get('/backlog/{project}', [TaskController::class, 'showBacklog'])->name('backlog');
     Route::post('/backlog/{project}', [TaskController::class, 'listTasksByTitle'])->name('listTasksByTitle');
+
+    Route::get('/task/{project}/{id}', [TaskController::class, 'getTask'])->name('getTask');
+    
+    Route::get('/delete-task/{project}/{id}', [TaskController::class, 'deleteTask'])->name('deleteTask');
+    
+    Route::post('/modify-subtask/{id}', [TaskController::class, 'updateSubTask'])->name('updateSubTask');
     
     Route::post('/create-task/{project}', [TaskController::class, 'createTask'])->name('createTask');
     Route::get('/create-task/{project}', function () { return view('create-task'); });
-    
-    Route::get('/kanban-board/{project}', function () { return view('kanban-board'); });
+
+    Route::get('/modify-task/{project}/{id}', [TaskController::class, 'getModifyTask'])->name('modifyTask');
+    Route::post('/backlog/{project}', [TaskController::class, 'listTasksByTitle'])->name('listTasksByTitle'); 
+
+    Route::get('/kanban-board/{project}', [TaskController::class, 'getKanban'])->name('getKanban');
+    Route::post('/changeStateTask/{project}/{id}', [TaskController::class, 'changeStateTask'])->name('changeStateTask');
+
     Route::get('/modify-task/{project}', function () { return view('modify-task'); });
     Route::get('/notifications/{project}', function () { return view('notifications'); });
     Route::get('/profile/{project}', function () { return view('profile'); });
