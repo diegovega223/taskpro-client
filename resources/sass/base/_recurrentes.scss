@@ -179,7 +179,7 @@ input#user-search.input-project {
   left: 50%;
   transform: translate(-50%, -50%);
 }
- 
+
 .modal-header {
   padding: 1rem;
   background-color: v.$color-secundario;
@@ -256,4 +256,27 @@ body.dark {
   display: none;
   font-size: 1.2rem;
   margin: 0;
+}
+
+.error,
+.success {
+  font-weight: bold;
+}
+
+.error {
+  color: v.$color-error !important;
+}
+
+.success {
+  color: v.$color-success !important;
+}
+
+body.dark {
+  .error {
+    color: v.$color-error !important;
+  }
+
+  .success {
+    color: v.$color-success !important;
+  }
 }

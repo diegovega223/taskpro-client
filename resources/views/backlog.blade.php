@@ -17,7 +17,8 @@
             <div class="container-backlog">
                 <div class="backlog">
                     @foreach ($tareas as $tarea)
-                        <a href="{{ route('getTask', ['project' => $project, 'id' => $tarea['IDTarea']]) }}" class="container-backlog-task">
+                        <a href="{{ route('getTask', ['project' => $project, 'id' => $tarea['IDTarea']]) }}"
+                            class="container-backlog-task">
                             <div class="task-card" id="{{ $tarea['IDTarea'] }}">
                                 <div class="task-content collapsed">
                                     <div class="header-task">
@@ -25,10 +26,11 @@
                                     </div>
                                     <div class="user-task">
                                         @if (!empty($tarea['foto']))
-                                        <p>{{ $tarea['name'] }}</p>
-                                        <div class="profile">
-                                            <img src="{{ $tarea['foto'] }}" alt="{{ $tarea['name'] }}" class="profile-img">
-                                        </div>
+                                            <p>{{ $tarea['name'] }}</p>
+                                            <div class="profile">
+                                                <img src="{{ $tarea['foto'] }}" alt="{{ $tarea['name'] }}"
+                                                    class="profile-img">
+                                            </div>
                                         @else
                                             <p>{{ $tarea['name'] }}</p>
                                             <div class="profile">
@@ -37,8 +39,9 @@
                                         @endif
                                     </div>
                                     <div class="deadline-container">
-
-                                        <p>{{ 'Deadline ' . $tarea['fechaVenc'] }}</p>
+                                        <p class='' id="deadline-{{ $tarea['IDTarea'] }}">
+                                            Deadline: {{ $tarea['fechaVenc'] }}
+                                        </p>
 
                                     </div>
                                 </div>
@@ -49,4 +52,5 @@
             </div>
         </div>
     </div>
+    <script type="module" src="{{ asset('js/src/color-date-backlog.js') }}?v={{ time() }}"></script>
 @endsection

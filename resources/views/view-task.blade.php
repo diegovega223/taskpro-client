@@ -15,7 +15,9 @@
                         <p>{{ $tarea['descripcion'] }}</p>
                     </div>
 
-                    <p>Deadline: <span>{{ $tarea['fechaVenc'] }}</span></p>
+                       <p id="deadline" data-task-id="{{ $tarea['IDTarea'] }}">
+                                                {{ 'Deadline: ' . $tarea['fechaVenc'] }}
+                                            </p>
                     <p>Priority: <span>{{ $tarea['prioridad'] }}</span></p>
                     <p>State:
                         <span>
@@ -80,4 +82,5 @@
         </div>
     </div>
     <script src="{{ asset('js/src/view-task.js') }}"></script>
+    <script type="module" src="{{ asset('js/src/color-date-view-task.js') }}?v={{ time() }}"></script>
 @endsection

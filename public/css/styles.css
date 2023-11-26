@@ -371,6 +371,26 @@ body.dark a.modal-button:hover {
   margin: 0;
 }
 
+.error,
+.success {
+  font-weight: bold;
+}
+
+.error {
+  color: #ff4d40 !important;
+}
+
+.success {
+  color: #70af72 !important;
+}
+
+body.dark .error {
+  color: #ff4d40 !important;
+}
+body.dark .success {
+  color: #70af72 !important;
+}
+
 #logo {
   position: fixed;
   top: 0;
@@ -1624,6 +1644,7 @@ body.dark .kanban-board .done {
   color: #333333;
   padding: 1rem;
   text-align: center;
+  font-size: 1.4rem;
   border-bottom: 0.1rem solid #ccc;
 }
 .task-card .user-task {
