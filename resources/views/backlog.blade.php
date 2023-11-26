@@ -25,7 +25,10 @@
                                     </div>
                                     <div class="user-task">
                                         @if (!empty($tarea['foto']))
+                                        <p>{{ $tarea['name'] }}</p>
+                                        <div class="profile">
                                             <img src="{{ $tarea['foto'] }}" alt="{{ $tarea['name'] }}" class="profile-img">
+                                        </div>
                                         @else
                                             <p>{{ $tarea['name'] }}</p>
                                             <div class="profile">

@@ -19,9 +19,12 @@ Route::middleware(['access'])->group(function () {
     Route::post('/create-project', [ProjectController::class, 'createProject'])->name('createProject');
     Route::get('/delete-project/{id}', [ProjectController::class, 'deleteProject'])->name('deleteProject');
     Route::get('/project', [ProjectController::class, 'showUserProjects'])->name('project');
-
+    
+    Route::get('/profile/{project?}', [UserController::class, 'getUser'])->name('getUser');
+    Route::post('/profile/{project?}', [UserController::class, 'updateProfile'])->name('updateProfile');
 
     Route::get('/search/{user}', [UserController::class, 'search'])->name('search');
+
     Route::get('/SearchProjectUser/{project}/{user}', [UserController::class, 'SearchProjectUserByName'])->name('SearchProjectUserByName');
     
     Route::get('/backlog/{project}', [TaskController::class, 'showBacklog'])->name('backlog');
@@ -34,6 +37,9 @@ Route::middleware(['access'])->group(function () {
     Route::post('/modify-subtask/{id}', [TaskController::class, 'updateSubTask'])->name('updateSubTask');
     
     Route::post('/create-task/{project}', [TaskController::class, 'createTask'])->name('createTask');
+    
+    Route::put('/modify-task/{project}/{id}', [TaskController::class, 'updateTask'])->name('updateTask');
+    
     Route::get('/create-task/{project}', function () { return view('create-task'); });
 
     Route::get('/modify-task/{project}/{id}', [TaskController::class, 'getModifyTask'])->name('modifyTask');
@@ -41,8 +47,9 @@ Route::middleware(['access'])->group(function () {
 
     Route::get('/kanban-board/{project}', [TaskController::class, 'getKanban'])->name('getKanban');
     Route::post('/changeStateTask/{project}/{id}', [TaskController::class, 'changeStateTask'])->name('changeStateTask');
-
-    Route::get('/modify-task/{project}', function () { return view('modify-task'); });
+   
+    Route::post('/delete-subtask/{id}', [TaskController::class, 'deleteSubTask'])->name('deleteSubTask');
+    
     Route::get('/notifications/{project}', function () { return view('notifications'); });
     Route::get('/profile/{project}', function () { return view('profile'); });
 

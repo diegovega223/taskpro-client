@@ -29,10 +29,17 @@
                     </button>
                 </a>
             </li>
-
             <li class="profile">
-                <p>{{ ucfirst(substr(request()->cookie('name'), 0, 1)) }}</p>
+                <a href="/profile">
+                    @if (request()->cookie('foto'))
+                        <img src="{{ request()->cookie('foto') }}" alt="Profile Picture" class="profile-img">
+                    @elseif (request()->cookie('name'))
+                        <p>{{ ucfirst(substr(request()->cookie('name'), 0, 1)) }}</p>
+                    @else
+                    @endif
+                </a>
             </li>
+        </ul>
         </ul>
     </header>
 

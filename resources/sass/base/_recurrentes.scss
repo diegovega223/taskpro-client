@@ -87,7 +87,6 @@ body.dark ::selection {
 }
 
 .alert {
-  padding: 1rem;
   margin: 0 auto;
   margin-top: 1.5rem;
   text-align: center;
@@ -103,9 +102,8 @@ body.dark ::selection {
 }
 
 .mesagge-success {
-  color: v.$color-success;
+  color: v.$color-success !important;
 }
-
 
 @media (max-width: v.$tablet) {
   .alert {
@@ -161,10 +159,8 @@ input#user-search.input-project {
 
 .modal {
   display: none;
-  justify-content: center;
-  align-items: center;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   left: 0;
   top: 0;
   width: 100%;
@@ -172,14 +168,18 @@ input#user-search.input-project {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
+
 .modal-content {
   background-color: v.$color-blanco;
-  margin: 15% auto;
   width: 40rem;
   height: 15rem;
   color: v.$color-negro;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-
+ 
 .modal-header {
   padding: 1rem;
   background-color: v.$color-secundario;

@@ -29,11 +29,18 @@
                 </button>
             </a>
         </li>
-        <ul>
-            <li class="profile">
-                <p>{{ ucfirst(substr(request()->cookie('name'), 0, 1)) }}</p>
-            </li>
-        </ul>
+
+        <li class="profile">
+            <a href="/profile/{{ request()->route('project') }}">
+                @if (request()->cookie('foto'))
+                    <img src="{{ request()->cookie('foto') }}" alt="Profile Picture" class="profile-img">
+                @elseif (request()->cookie('name'))
+                    <p>{{ ucfirst(substr(request()->cookie('name'), 0, 1)) }}</p>
+                @else
+                @endif
+            </a>
+        </li>
+    </ul>
 </header>
 <div class="nav-menu">
     <ul>
@@ -44,7 +51,8 @@
         <li><a href="/backlog/{{ request()->route('project') }}"><i
                     class="material-icons">format_list_bulleted</i>Backlog</a></li>
         <li>
-            <a href="/profile"> <span class="material-icons">account_circle</span> Profile</a>
+            <a href="/profile/{{ request()->route('project') }}"> <span class="material-icons">account_circle</span>
+                Profile</a>
         </li>
         <li><a href="/notifications/{{ request()->route('project') }}"> <span
                     class="material-icons">notifications_none</span> Notifications</a>

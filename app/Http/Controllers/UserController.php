@@ -117,4 +117,87 @@ class UserController extends Controller
         ])->get(getenv('API_TASKPRO_URL') . 'search/' . $project . '/' . $user);
         return response()->json($response->json());
     }
+
+    public function getUser(Request $request, $project = null)
+    {
+        $id = $request->cookie('id');
+        $accessToken = session('access_token');
+        $data = $this->getUserProfileData($accessToken, $id);
+
+        $view = ($project === null) ? 'profile' : 'profile-in-project';
+        return view($view, ['data' => $data]);
+    }
+
+    public function updateProfile(Request $request, $project = null)
+    {
+        $id = $request->cookie('id');
+        $accessToken = session('access_token');
+        $successMessage = 'Profile updated successfully';
+        $errorMessage = 'Error updating profile';
+
+        $imagePath = $this->handleProfilePictureUpload($request, $id);
+        $requestData = $request->all();
+        if ($imagePath) {
+            $requestData['foto'] = $imagePath;
+        }
+        $response = $this->sendUpdateRequest($accessToken, $requestData);
+        if ($response->successful()) {
+            $data = $this->getUserProfileData($accessToken, $id);
+            $this->refreshCookies($data);
+
+            $route = ($project === null) ? 'getUser' : 'getUser';
+            $params = ($project === null) ? [] : ['project' => $project];
+
+            return redirect()->route($route, $params)->with(['success' => $successMessage, 'data' => $data]);
+        } else {
+            return back()->withInput()->withErrors(['mensaje' => $errorMessage]);
+        }
+    }
+
+    private function sendUpdateRequest($accessToken, $requestData)
+    {
+        $headers = [
+            'Authorization' => 'Bearer ' . $accessToken,
+            'Accept' => 'application/json',
+        ];
+        $response = Http::withHeaders($headers)->put(getenv('API_TASKPRO_URL') . 'usuario/editar', $requestData);
+        return $response;
+    }
+
+    private function refreshCookies($data)
+    {
+        $cookies = [];
+        foreach ($data['user'] as $key => $value) {
+            if (is_array($value)) {
+                $value = json_encode($value);
+            }
+            $cookies[] = cookie()->forever($key, $value);
+        }
+        if (isset($data['user']['foto'])) {
+      
+            $cookies[] = cookie()->forever('foto', $data['user']['foto']);
+        }
+        foreach ($cookies as $cookie) {
+            cookie()->queue($cookie);
+        }
+    }
+
+    private function getUserProfileData($accessToken, $id)
+    {
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken,
+        ])->get(getenv('API_TASKPRO_URL') . 'usuario/perfil/' . $id);
+
+        return $response->json();
+    }
+
+    private function handleProfilePictureUpload(Request $request, $userId)
+    {
+        if (!$request->hasFile('foto')) {
+            return;
+        }
+        $imageName = 'img-' . $userId . '.' . $request->foto->extension();
+        $request->foto->move(public_path('img/perfil'), $imageName);
+        return '/img/perfil/' . $imageName;
+    }
 }

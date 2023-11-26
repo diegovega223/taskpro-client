@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container-menu-body">
+
         @include('layouts.partials.sidebar')
         <div class="right-container">
             <div class="text-center mb-2">
@@ -35,14 +36,18 @@
                                     {{ $tarea['estado'] }}
                             @endswitch
                         </span>
-                        <p>Assigned to: <span>{{ $tarea['usuarios_proyectos'][0]['user']['name'] }}</span></p>
+                    <p>Assigned to: <span>{{ $tarea['usuarios_proyectos'][0]['user']['name'] }}</span></p>
                     <div class="button-task-container">
                         <div class="button-task">
-                            <button id="deleteButton" data-delete-url="{{ route('deleteTask', ['project' => request()->segment(2), 'id' => $tarea['IDTarea']]) }}">Delete</button>
-                            <button onclick="window.location.href='{{ route('modifyTask', ['project' => request()->segment(2), 'id' => $tarea['IDTarea']]) }}'">Edit</button>
+                            <button id="deleteButton"
+                                data-delete-url="{{ route('deleteTask', ['project' => request()->segment(2), 'id' => $tarea['IDTarea']]) }}">Delete</button>
+                            <button
+                                onclick="window.location.href='{{ route('modifyTask', ['project' => request()->segment(2), 'id' => $tarea['IDTarea']]) }}'">Edit</button>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="sub-tasks">
                     <div class="sub-task-header">
                         <h2>Subtasks completed: </h2>

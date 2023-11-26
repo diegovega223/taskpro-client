@@ -218,4 +218,39 @@ class TaskController extends Controller
             return back()->with('error', $e->getMessage());
         }
     }
+
+    public function deleteSubTask(Request $request, $id)
+    {
+        $accessToken = session('access_token');
+        try {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $accessToken,
+            ])->delete(getenv("API_TASKPRO_URL") . "sub-tarea/{$id}");
+            return $response->json();
+        } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+    }
+    public function updateTask(Request $request, $project, $IDTarea)
+    {
+        $accessToken = session('access_token');
+        $data = $request->all();
+        try {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $accessToken,
+            ])->put(getenv("API_TASKPRO_URL") . "tarea", [
+                'IDTarea' => $IDTarea,
+                'titulo' => $data["titulo"],
+                'descripcion' => $data["descripcion"],
+                'fechaVenc' => $data["fechaVenc"],
+                'prioridad' => $data["prioridad"],
+                'username' => $data["username"],
+                'IDProyecto' => $project,
+                'subTareas' => $data["subTareas"],
+            ]);
+            return response()->json(['success' => true, 'message' => 'Successfully modified task!']);
+        } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+    }
 }

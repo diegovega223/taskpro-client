@@ -3,12 +3,15 @@
 
 .container-new-project {
   height: 65rem;
+  margin: auto;
+  max-width: 120rem;
 }
 
 .container-create-project {
   @include m.grid-columns(2);
-  margin: auto 3rem;
+
   padding: 2rem 2rem;
+
   .column {
     border: 0.1rem solid v.$color-gris-claro;
     margin: 2rem 0.3rem;
@@ -16,8 +19,7 @@
 }
 
 body.dark .container-create-project {
-  background-color: v.$color-negro;
-  border: 0.1rem solid v.$color-gris;
+  border: none;
 }
 
 .project-data {
@@ -70,6 +72,7 @@ body.dark .letter-role {
 }
 
 .assing-box {
+  background: v.$color-blanco;
   border: 0.1rem solid v.$color-gris-claro;
   min-height: 30rem;
   height: auto;
@@ -168,6 +171,17 @@ body.dark .custom-date-input {
     height: 4rem;
   }
 }
+.column.project-data,
+.column.assigned-user-project-container {
+  background-color: v.$color-blanco-gris;
+}
+
+body.dark {
+  .column.project-data,
+  .column.assigned-user-project-container {
+    background-color: v.$color-negro;
+  }
+}
 
 @media (max-width: v.$mobile) {
   .container-create-project {
@@ -183,7 +197,6 @@ body.dark .custom-date-input {
 
   .column.project-data,
   .column.assigned-user-project-container {
-    border-bottom: 0;
     border-left: 0;
     border-right: 0;
   }
@@ -218,5 +231,3 @@ body.dark .custom-date-input {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-

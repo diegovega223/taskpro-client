@@ -10,19 +10,22 @@
 
 .container-project {
   @include m.grid-columns(2, 0);
+  background-color: v.$color-blanco-gris;
   border: 0.1rem solid v.$color-gris-claro;
   padding: 2rem;
-  width: 100%;
+  max-width: 120rem;
   height: 50rem;
   margin: 1rem 5rem;
 }
 
 body.dark .container-project {
+  background-color: v.$color-bg-dark;
   border: 0.1rem solid v.$color-gris;
 }
 
 .card {
   position: relative;
+  background-color: v.$color-blanco;
   border: 0.1rem solid v.$color-gris-claro;
   width: 25rem;
   height: 25rem;
@@ -133,6 +136,7 @@ body.dark .card {
     margin: auto 0;
     height: 130rem;
     width: 100%;
+    
   }
   .card {
     margin-top: 0;

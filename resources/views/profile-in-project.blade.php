@@ -1,16 +1,19 @@
 @extends('layouts.base-in-project')
 @section('content')
     <div class="container-menu-body">
-        <div class="">
+        @include('layouts.partials.sidebar')
+        <div class="right-container">
             <div class="text-center mb-2">
-                <h1 class="title mb2">Profile</h1>
-            </div>{{ request()->route('project') }}
+                <h1 class="title">Profile</h1>
+            </div>
             <div class="profile-container">
-                <form action="/profile/{{ request()->route('project') }}" method="post" class="form-profile">
+                <form action="/profile/{{ request()->route('project') }}" method="post" class="form-profile"
+                    enctype="multipart/form-data">
                     @csrf
+                    <input type="number" style="display: none;" value={{ $data['user']['id'] }} name='id' />
                     <label for="fileInput" class="image-profile">
-                        <input type="number" style="display: none;" value={{ $data['user']['id'] }} name='id' />
-                        <input type="file" accept="image/*" id="fileInput" style="display: none;" />
+
+                        <input type="file" accept="image/*" id="fileInput" style="display: none;" name="foto"/>
                         <img id="profileImage"
                             src="{{ $data['user']['perfil']['foto'] ?? asset('img/profile-default.jpg') }}"
                             alt="Perfil" />
@@ -61,6 +64,7 @@
                     @endif
                     <button type="submit"> Accept </button>
                 </form>
+
             </div>
         </div>
     </div>

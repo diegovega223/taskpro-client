@@ -205,7 +205,6 @@ body.dark ::selection {
 }
 
 .alert {
-  padding: 1rem;
   margin: 0 auto;
   margin-top: 1.5rem;
   text-align: center;
@@ -221,7 +220,7 @@ body.dark ::selection {
 }
 
 .mesagge-success {
-  color: #70af72;
+  color: #70af72 !important;
 }
 
 @media (max-width: 76.8rem) {
@@ -276,10 +275,8 @@ input#user-search.input-project {
 
 .modal {
   display: none;
-  justify-content: center;
-  align-items: center;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   left: 0;
   top: 0;
   width: 100%;
@@ -290,10 +287,13 @@ input#user-search.input-project {
 
 .modal-content {
   background-color: #ffffff;
-  margin: 15% auto;
   width: 40rem;
   height: 15rem;
   color: #333333;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .modal-header {
@@ -415,7 +415,8 @@ body.dark .navbar {
     z-index: 5;
   }
 }
-.profile {
+.profile,
+li a img {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
@@ -426,9 +427,15 @@ body.dark .navbar {
   align-items: center;
   overflow: hidden;
 }
-.profile i {
+.profile i,
+li a img i {
   font-size: 4rem;
   padding-top: 0.9rem;
+}
+
+.user-initial,
+.user-task .profile {
+  font-size: 2.5rem;
 }
 
 body.dark .profile {
@@ -992,19 +999,22 @@ body.dark .nav-menu ul li a {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0;
+  background-color: #e3e3e3;
   border: 0.1rem solid #ccc;
   padding: 2rem;
-  width: 100%;
+  max-width: 120rem;
   height: 50rem;
   margin: 1rem 5rem;
 }
 
 body.dark .container-project {
+  background-color: #2e2e2e;
   border: 0.1rem solid #444444;
 }
 
 .card {
   position: relative;
+  background-color: #ffffff;
   border: 0.1rem solid #ccc;
   width: 25rem;
   height: 25rem;
@@ -1205,13 +1215,14 @@ body.dark .circle {
 
 .container-new-project {
   height: 65rem;
+  margin: auto;
+  max-width: 120rem;
 }
 
 .container-create-project {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
-  margin: auto 3rem;
   padding: 2rem 2rem;
 }
 .container-create-project .column {
@@ -1220,8 +1231,7 @@ body.dark .circle {
 }
 
 body.dark .container-create-project {
-  background-color: #333333;
-  border: 0.1rem solid #444444;
+  border: none;
 }
 
 .project-data {
@@ -1279,6 +1289,7 @@ body.dark .letter-role {
 }
 
 .assing-box {
+  background: #ffffff;
   border: 0.1rem solid #ccc;
   min-height: 30rem;
   height: auto;
@@ -1378,6 +1389,16 @@ body.dark .custom-date-input {
   height: 4rem;
 }
 
+.column.project-data,
+.column.assigned-user-project-container {
+  background-color: #e3e3e3;
+}
+
+body.dark .column.project-data,
+body.dark .column.assigned-user-project-container {
+  background-color: #333333;
+}
+
 @media (max-width: 48rem) {
   .container-create-project {
     display: grid;
@@ -1393,7 +1414,6 @@ body.dark .custom-date-input {
   }
   .column.project-data,
   .column.assigned-user-project-container {
-    border-bottom: 0;
     border-left: 0;
     border-right: 0;
   }
@@ -1557,6 +1577,7 @@ body.dark .header-kanban-board {
 }
 .kanban-board {
   min-height: 50rem;
+  background-color: #e3e3e3;
 }
 .kanban-board .toDo {
   border-top: 0.1rem solid #ccc;
@@ -1572,6 +1593,9 @@ body.dark .header-kanban-board {
   border-right: 0.1rem solid #ccc;
 }
 
+body.dark .kanban-board {
+  background-color: #2e2e2e;
+}
 body.dark .kanban-board .toDo {
   border-top: 0.1rem solid #444444;
   border-bottom: 0.1rem solid #444444;
@@ -1599,7 +1623,7 @@ body.dark .kanban-board .done {
 .task-card .body-task {
   color: #333333;
   padding: 1rem;
-  text-align: justify;
+  text-align: center;
   border-bottom: 0.1rem solid #ccc;
 }
 .task-card .user-task {
@@ -1637,6 +1661,7 @@ body.dark .task-card .body-task {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 1rem;
+  background-color: #e3e3e3;
   border: 0.1rem solid #ccc;
   margin: 2rem 10rem;
   padding: 5rem;
@@ -1888,6 +1913,7 @@ body.dark .container-search input {
   margin: 2rem auto;
   padding: 1rem;
   max-width: 85rem;
+  background-color: #e3e3e3;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 0;
@@ -1922,6 +1948,7 @@ body.dark .backlog .view-button-container {
 
 body.dark .backlog {
   border: 0.1rem solid #444444;
+  background-color: #2e2e2e;
 }
 body.dark .backlog .deadline-container {
   border-top: 0.1rem solid #444444;
@@ -1965,15 +1992,16 @@ body.dark .backlog .header-task {
   }
 }
 .profile-container {
-  border: 0.1rem solid #ccc;
-  margin: 1rem 10%;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   position: relative;
+  max-width: 120rem;
 }
 .profile-container .input-project,
 .profile-container .custom-date-input {
   width: auto;
-  margin: 1rem;
+  margin: 0;
 }
 .profile-container .custom-date-input {
   display: flex;
@@ -1984,13 +2012,31 @@ body.dark .backlog .header-task {
   color: #444444;
 }
 
-body.dark .profile-container {
+.form-profile {
+  border: 0.1rem solid #ccc;
+  background-color: #e3e3e3;
+  padding: 3rem;
+  padding-bottom: 1rem;
+  margin: 0 5rem;
+  margin-bottom: 1rem;
+}
+
+body.dark .form-profile {
   border: 0.1rem solid #444444;
   background-color: #333333;
 }
 
-.form-profile {
-  margin: 1.5rem;
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+.input-container label {
+  text-align: left;
+  color: #f3721f;
+}
+
+body.dark .input-container label {
+  color: #fac710;
 }
 
 .image-profile {
@@ -2026,7 +2072,7 @@ body.dark .image-profile .material-icons.camera {
 
 .input-group-profile {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
   padding: 2rem;
 }
@@ -2044,6 +2090,11 @@ body.dark .image-profile .material-icons.camera {
     border-bottom: 0.1rem solid #ccc;
     margin-left: 0;
     margin-right: 0;
+  }
+  .form-profile {
+    margin: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
   body.dark .profile-container {
     border: none;

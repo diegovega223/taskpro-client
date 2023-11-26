@@ -2,14 +2,16 @@
 @use "../mixins/" as m;
 
 .profile-container {
-  border: 0.1rem solid v.$color-gris-claro;
-  margin: 1rem 10%;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   position: relative;
+  max-width: 120rem;
+
   .input-project,
   .custom-date-input {
     width: auto;
-    margin: 1rem;
+    margin: 0;
   }
   .custom-date-input {
     display: flex;
@@ -21,15 +23,36 @@
   }
 }
 
-body.dark .profile-container {
+.form-profile {
+  border: 0.1rem solid v.$color-gris-claro;
+  background-color: v.$color-blanco-gris;
+  padding: 3rem;
+  padding-bottom: 1rem;
+  margin: 0 5rem;
+  margin-bottom: 1rem;
+}
+
+
+body.dark .form-profile {
   border: 0.1rem solid v.$color-gris;
   background-color: v.$color-negro;
 }
 
-.form-profile {
-  margin: 1.5rem;
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  label {
+    text-align: left;
+    color: v.$color-secundario;
+  }
 }
 
+body.dark .input-container {
+  label {
+    color: v.$color-principal;
+  }
+}
 .image-profile {
   margin: auto;
   cursor: pointer;
@@ -66,7 +89,7 @@ body.dark .image-profile {
 }
 
 .input-group-profile {
-  @include m.grid-columns(3);
+  @include m.grid-columns(2);
   padding: 2rem;
 }
 
@@ -81,6 +104,11 @@ body.dark .image-profile {
     border-bottom: 0.1rem solid v.$color-gris-claro;
     margin-left: 0;
     margin-right: 0;
+  }
+  .form-profile {
+    margin: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   body.dark .profile-container {

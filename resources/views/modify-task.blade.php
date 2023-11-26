@@ -9,8 +9,10 @@
             <div class="container-create-task">
                 <div class="task-info-content">
                     <h2>Title task</h2>
+                    <p id="error-message-title" class='inputError'></p>
                     <input type="text" class="input-project" placeholder="Title" value="{{ $tarea['titulo'] }}">
                     <h2>Description task</h2>
+                    <p id="error-message-description" class='inputError'></p>
                     <textarea name="Description-task" class="input-project" placeholder="Description">{{ $tarea['descripcion'] }}</textarea>
                 </div>
                 <div class="subtask-content">
@@ -31,9 +33,9 @@
                     <div class="subtask-box" id="subtask-container">
                         <ol>
                             @foreach ($tarea['sub_tareas'] as $sub_tarea)
-                                <li class="subtask">
+                                <li class="subtask existing-subtask" data-id="{{ $sub_tarea['IDSubTarea'] }}">
                                     <span>{{ $sub_tarea['contenido'] }}</span>
-                                    <span class="material-icons">highlight_off</span>
+                                    <span class="material-icons close-icon">highlight_off</span>
                                 </li>
                             @endforeach
                         </ol>
@@ -42,12 +44,12 @@
                 <div class="container-task-date-content">
                     <div class="">
                         <h2>Deadline</h2>
+                        <p id="error-message-deadline" class='inputError'></p>
                         <div class="align-items">
                             <input type="date" class="custom-date-input" id="Deadline"
                                 value="{{ $tarea['fechaVenc'] }}">
                         </div>
                     </div>
-
                     <div class="">
                         <h2>Prioridad</h2>
                         <div class="align-items">
@@ -64,24 +66,18 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="assigned-task">
                     <h2>User assignment</h2>
-                    <input type="text" id="username" placeholder="Username" class="input-project" value="">
+                    <p id="error-message-assignment" class='inputError'></p>
+                    <input type="text" id="username" placeholder="Username" class="input-project"
+                        value="{{ $tarea['usuarios_proyectos'][0]['user']['name'] }}">
                     <div id="search-results" class="search-results"></div>
                 </div>
             </div>
-
-
+               <div id="message" class="alert mesagge-success"></div>
             <div class="button-container">
-                <button class="accept-button">Accept</button>
+                <button class="accept-button">Modify</button>
             </div>
         </div>
-
-        @if (session('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
-        <script src="{{ asset('js/src/subtask.js') }}"></script>
+        <script src="{{ asset('js/src/modify-task.js') }}"></script>
     @endsection

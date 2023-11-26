@@ -63,10 +63,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  let usernameValue = document.getElementById("username").value;
+
   function handleSearchFieldInput() {
     const query = searchField.value.trim();
     const pathParts = window.location.pathname.split("/");
-    const projectId = pathParts[pathParts.length - 1];
+    const projectId = pathParts[pathParts.length - 2];
     if (query) {
       fetch(
         "/SearchProjectUser/" +
@@ -177,36 +179,42 @@ document.addEventListener("DOMContentLoaded", function () {
       .querySelector('meta[name="csrf-token"]')
       .getAttribute("content");
     const pathParts = window.location.pathname.split("/");
-    const projectId = pathParts[pathParts.length - 1];
-
+    const projectId = pathParts[pathParts.length - 2];
+    let username = document.getElementById("username").value;
     const task = {
       title: titleField.value.trim(),
       description: descriptionField.value.trim(),
       fechaVenc: deadlineField.value,
       prioridad: priorityField.value,
-      estado: "por hacer",
       subTareas: subtasks,
       userId: userId,
+      username: username,
     };
 
-    fetch(`/create-task/${projectId}`, {
-      method: "POST",
+    const taskId = pathParts[pathParts.length - 1];
+
+    fetch(`/modify-task/${projectId}/${taskId}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "X-CSRF-Token": token,
       },
-      body: JSON.stringify(task),
+      body: JSON.stringify({
+        titulo: task.title,
+        descripcion: task.description,
+        fechaVenc: task.fechaVenc,
+        prioridad: task.prioridad,
+        userId: task.userId,
+        username: task.username,
+        IDProyecto: projectId,
+        subTareas: task.subTareas,
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
           const messageElement = document.querySelector("#message");
           messageElement.textContent = data.message;
-          const inputs = document.querySelectorAll("input, textarea, select");
-          inputs.forEach((input) => (input.value = ""));
-          subtasks = [];
-          const subtaskElements = document.querySelectorAll(".subtask");
-          subtaskElements.forEach((subtask) => subtask.remove());
         }
       })
       .catch((error) => console.error("Error:", error));
@@ -219,3 +227,30 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector(".accept-button")
     .addEventListener("click", handleAcceptButtonClick);
 });
+
+const token2 = document
+  .querySelector('meta[name="csrf-token"]')
+  .getAttribute("content");
+
+document
+  .querySelectorAll(".existing-subtask .close-icon")
+  .forEach(function (closeIcon) {
+    closeIcon.addEventListener("click", function (event) {
+      const subtaskId = event.target.parentElement.getAttribute("data-id");
+      fetch(`/delete-subtask/${subtaskId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": token2,
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            event.target.parentElement.remove();
+          } else {
+            console.error("Error:", response.statusText);
+          }
+        })
+        .catch((error) => console.error("Error:", error));
+    });
+  });
