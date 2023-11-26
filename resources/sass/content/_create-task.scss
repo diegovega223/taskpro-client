@@ -7,9 +7,11 @@
   gap: 1rem;
   background-color: v.$color-blanco-gris;
   border: 0.1rem solid v.$color-gris-claro;
-  margin: 2rem 10rem;
+  margin: auto;
   padding: 5rem;
+  max-width: 100rem;
 }
+
 
 body.dark .container-create-task {
   background-color: v.$color-negro;

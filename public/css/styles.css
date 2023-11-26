@@ -1684,8 +1684,9 @@ body.dark .task-card .body-task {
   gap: 1rem;
   background-color: #e3e3e3;
   border: 0.1rem solid #ccc;
-  margin: 2rem 10rem;
+  margin: auto;
   padding: 5rem;
+  max-width: 100rem;
 }
 
 body.dark .container-create-task {
